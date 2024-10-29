@@ -7,7 +7,7 @@ export class BacklogItem {
     private priority: number;
     private estimatedHours: number;
     private actualHours: number;
-    private product: Product;
+    private product?: Product;
 
     constructor(backlogItem: {
         id?: number;
@@ -16,7 +16,7 @@ export class BacklogItem {
         priority: number;
         estimatedHours: number;
         actualHours: number;
-        product: Product;
+        product?: Product;
     }) {
         this.validate(backlogItem);
 
@@ -53,7 +53,7 @@ export class BacklogItem {
         return this.actualHours;
     }
 
-    getProduct(): Product {
+    getProduct(): Product | undefined {
         return this.product;
     }
 
@@ -64,7 +64,7 @@ export class BacklogItem {
         priority: number;
         estimatedHours: number;
         actualHours: number;
-        product: Product;
+        product?: Product;
     }) {
         if (!backlogItem.title?.trim()) {
             throw new Error('Title is required');
@@ -80,9 +80,6 @@ export class BacklogItem {
         }
         if (backlogItem.actualHours === undefined || backlogItem.actualHours < 0) {
             throw new Error('Actual hours must be a non-negative number');
-        }
-        if (!backlogItem.product) {
-            throw new Error('Product is required');
         }
     }
 }
