@@ -1,8 +1,17 @@
-export type User = { id?: number; firstName: string; lastName: string; email: string; role: string };
+export type User = {
+  id?: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  role: string
+};
 
-export type Team = { id?: number; name: string; description: string; owner?: User; members?: User[] };
-
-export type Product = { id?: number; name: string; description: string; releaseDate: Date };
+export type Product = {
+  id?: number;
+  name: string;
+  description: string;
+  releaseDate: Date
+};
 
 export type BacklogItem = {
   id?: number;
@@ -20,5 +29,13 @@ export type Sprint = {
   startDate: Date;
   endDate: Date;
   backlogItems: BacklogItem[];
-  team: Team;
+};
+
+export type Team = {
+  id?: number;
+  name: string;
+  description: string;
+  owner?: User;
+  members?: User[];
+  sprints?: Sprint[];
 };
