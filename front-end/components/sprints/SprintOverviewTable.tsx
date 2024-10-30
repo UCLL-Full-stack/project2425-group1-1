@@ -3,9 +3,10 @@ import { Sprint } from '@types';
 
 type Props = {
   sprints: Sprint[] | null;
+  selectSprint: (sprint: Sprint) => void;
 };
 
-const TeamOverviewTable: React.FC<Props> = ({ sprints }: Props) => {
+const TeamOverviewTable: React.FC<Props> = ({ sprints, selectSprint }: Props) => {
   return (
     <>
       {sprints && (
@@ -20,7 +21,7 @@ const TeamOverviewTable: React.FC<Props> = ({ sprints }: Props) => {
           </thead>
           <tbody>
             {sprints.map((sprint, index) => (
-              <tr key={index} onClick={() => { }} role="button">
+              <tr key={index} onClick={() => { selectSprint(sprint) }} role="button">
                 <td>{sprint.name}</td>
                 <td>{sprint.startDate.toString()}</td>
                 <td>{sprint.endDate.toString()}</td>

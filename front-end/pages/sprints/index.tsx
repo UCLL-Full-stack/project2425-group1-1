@@ -4,9 +4,11 @@ import { useEffect, useState } from 'react';
 import { Sprint } from '@types';
 import SprintService from '@services/SprintService';
 import SprintOverviewTable from '@components/sprints/SprintOverviewTable';
+import SprintDetails from '@components/sprints/SprintDetails';
 
-const Lecturers: React.FC = () => {
+const Sprints: React.FC = () => {
     const [sprints, setSprints] = useState<Array<Sprint>>();
+    const [selectedSprint, setSelectedSprint] = useState<Sprint | null>(null);
 
     const getSprints = async () => {
         const resp = await SprintService.getAllSprints();
@@ -26,11 +28,16 @@ const Lecturers: React.FC = () => {
                 <section>
                     <h2>Sprints overview</h2>
                     {
-                        sprints && (<SprintOverviewTable sprints={sprints} />)
+                        sprints && (<SprintOverviewTable sprints={sprints} selectSprint={setSelectedSprint} />)
                     }
+
+                    {selectedSprint
+                        && (<h2>Details of {selectedSprint.name}</h2>)}
+                    {selectedSprint
+                        && (<SprintDetails sprint={selectedSprint} />)}
                 </section>
             </main>
         </>
     );
 };
-export default Lecturers;
+export default Sprints;
