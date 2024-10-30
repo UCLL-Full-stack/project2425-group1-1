@@ -1,4 +1,5 @@
 import { User } from './user';
+import { Sprint } from './sprint';
 
 export class Team {
     private id?: number;
@@ -6,8 +7,9 @@ export class Team {
     private description: string;
     private owner?: User;
     private members: User[];
+    private sprints: Sprint[];
 
-    constructor(team: { id?: number; name: string; description: string; owner?: User; members?: User[] }) {
+    constructor(team: { id?: number; name: string; description: string; owner?: User; members?: User[]; sprints?: Sprint[] }) {
         this.validate(team);
 
         this.id = team.id;
@@ -15,6 +17,7 @@ export class Team {
         this.description = team.description;
         this.owner = team.owner;
         this.members = team.members || [];
+        this.sprints = team.sprints || [];
     }
 
     getId(): number | undefined {
@@ -37,7 +40,11 @@ export class Team {
         return this.members;
     }
 
-    private validate(team: { id?: number; name: string; description: string; owner?: User; members?: User[] }) {
+    getSprints(): Sprint[] {
+        return this.sprints;
+    }
+
+    private validate(team: { id?: number; name: string; description: string; owner?: User; members?: User[]; sprints?: Sprint[] }) {
         if (!team.name?.trim()) {
             throw new Error('Team name is required');
         }

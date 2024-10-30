@@ -1,7 +1,5 @@
 import { Sprint } from '../model/sprint';
 import { BacklogItem } from '../model/backlog_item';
-import { Product } from '../model/product';
-import { Team } from '../model/team';
 
 const backlogItems: BacklogItem[] = [
     new BacklogItem({
@@ -22,12 +20,6 @@ const backlogItems: BacklogItem[] = [
     }),
 ];
 
-const team = new Team({
-    id: 1,
-    name: 'Developer Team',
-    description: 'Team responsible for the project development'
-});
-
 const sprints: Sprint[] = [
     new Sprint({
         id: 1,
@@ -35,7 +27,6 @@ const sprints: Sprint[] = [
         startDate: new Date('2024-10-01'),
         endDate: new Date('2024-10-14'),
         backlogItems: backlogItems,
-        team: team,
     }),
     new Sprint({
         id: 2,
@@ -43,7 +34,6 @@ const sprints: Sprint[] = [
         startDate: new Date('2024-11-15'),
         endDate: new Date('2024-11-28'),
         backlogItems: backlogItems,
-        team: team,
     }),
 ];
 
