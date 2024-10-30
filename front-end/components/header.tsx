@@ -15,11 +15,18 @@ const Header: React.FC = () => {
           />
         </a>
 
-        <div className="me-auto">
-          <Link href="/" className="nav-link px-4 fs-5 text-white">
-            Home
-          </Link>
-        </div>
+        <ul className="navbar-nav me-auto">
+          <li className="navbar-item">
+            <Link href="/" className="nav-link px-4 fs-5 text-white">
+              Home
+            </Link>
+          </li>
+          <li className="navbar-item">
+            <Link href="/sprints" className="nav-link px-4 fs-5 text-white">
+              Sprints
+            </Link>
+          </li>
+        </ul>
       </nav>
     </header>
   );
