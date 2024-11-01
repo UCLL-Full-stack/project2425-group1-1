@@ -48,7 +48,15 @@ const getSprintById = ({ id }: { id: number }): Sprint | null => {
 
 const getAllSprints = (): Sprint[] => sprints;
 
+const addBacklogItemToSprint = (id: number, backlog_item: BacklogItem): BacklogItem => {
+    const sprint = getSprintById({ id: id });
+    if (!sprint) throw new Error(`Sprint with id ${id} does not exist.`);
+    sprint.getBacklogItems().push(backlog_item);
+    return backlog_item;
+};
+
 export default {
     getSprintById,
-    getAllSprints
+    getAllSprints,
+    addBacklogItemToSprint
 };

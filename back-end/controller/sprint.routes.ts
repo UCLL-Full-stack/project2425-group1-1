@@ -119,8 +119,48 @@ sprintRouter.get('/', async (req: Request, res: Response, next: NextFunction) =>
  */
 sprintRouter.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const sprint = await sprintService.getSprintById(Number(req.params.id));
+        const sprint = sprintService.getSprintById(Number(req.params.id));
         res.status(200).json(sprint);
+    } catch (error) {
+        next(error);
+    }
+});
+
+/**
+ * @swagger
+ * /sprints/{id}/backlog_items:
+ *   post:
+ *     summary: Add backlog items to a sprint
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: The sprint id.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: array
+ *             items:
+ *               type: integer
+ *     responses:
+ *       200:
+ *         description: Successfully added backlog items to the sprint.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/BacklogItem'
+ */
+sprintRouter.post('/:id/backlog_items', async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const sprint_id = Number(req.params.id);
+        const backlog_item_ids = <number[]>req.body;
+        res.status(200).json(sprintService.addBacklogItemsToSprint(sprint_id, backlog_item_ids));
     } catch (error) {
         next(error);
     }
