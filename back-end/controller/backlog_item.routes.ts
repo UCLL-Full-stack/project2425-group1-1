@@ -27,6 +27,7 @@
  */
 import express, { NextFunction, Request, Response } from 'express';
 import backlogItemService from '../service/backlog_item.service';
+import { BacklogItemDTO } from '../types';
 
 const backlogItemRouter = express.Router();
 
@@ -47,13 +48,39 @@ const backlogItemRouter = express.Router();
  */
 backlogItemRouter.get('/', async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const backlog_items = await backlogItemService.getAllBacklogItems();
-        res.status(200).json(backlog_items);
+        res.status(200).json(backlogItemService.getAllBacklogItems());
     } catch (error) {
         next(error);
     }
 });
 
+/**
+ * @swagger
+ * /backlog_items:
+ *   post:
+ *     summary: Create a new backlog item
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/BacklogItem'
+ *     responses:
+ *       200:
+ *         description: The created backlog item.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/BacklogItem'
+ */
+backlogItemRouter.post('/', async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const backlog_item = <BacklogItemDTO>req.body;
+        res.status(200).json(backlogItemService.createBacklogItem(backlog_item));
+    } catch (error) {
+        next(error);
+    }
+});
 
 /**
  * @swagger
@@ -77,8 +104,7 @@ backlogItemRouter.get('/', async (req: Request, res: Response, next: NextFunctio
  */
 backlogItemRouter.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const backlog_item = await backlogItemService.getBacklogItemById(Number(req.params.id));
-        res.status(200).json(backlog_item);
+        res.status(200).json(backlogItemService.getBacklogItemById(Number(req.params.id)));
     } catch (error) {
         next(error);
     }
