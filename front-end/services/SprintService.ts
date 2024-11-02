@@ -10,9 +10,20 @@ const getSprintById = (id: string) => {
   });
 };
 
+const addBacklogItemsToSprint = (id: string, backlog_item_ids: number[]) => {
+  return fetch(process.env.NEXT_PUBLIC_API_URL + "/sprints/" + id + "/backlog_items", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(backlog_item_ids)
+  });
+};
+
 const SprintService = {
   getAllSprints,
-  getSprintById
+  getSprintById,
+  addBacklogItemsToSprint
 };
 
 export default SprintService;
