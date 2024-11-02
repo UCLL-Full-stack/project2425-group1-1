@@ -15,7 +15,7 @@ const products: Product[] = [
     }),
 ];
 
-const getProductById = ({ id }: { id: number }): Product | null => {
+const getById = ({ id }: { id: number }): Product | null => {
     try {
         return products.find((product) => product.getId() === id) || null;
     } catch (error) {
@@ -24,9 +24,9 @@ const getProductById = ({ id }: { id: number }): Product | null => {
     }
 };
 
-const getAllProducts = (): Product[] => products;
+const getAll = (): Product[] => products;
 
 export default {
-    getProductById,
-    getAllProducts
+    getById,
+    getAll
 };

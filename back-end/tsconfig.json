@@ -1,18 +1,9 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "es6",
-        "rootDir": "./",
-        "baseUrl": ".",
-        "strict": true,
-        "esModuleInterop": true,
-        "paths": {
-            "@types": [
-                "types/index.ts"
-            ],
-            "@util": [
-                "util/index.ts"
-            ]
-        },
-    }
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "rootDir": "./",
+    "strict": true,
+    "esModuleInterop": true,
+  }
 }

@@ -19,7 +19,7 @@ const backlogItems: BacklogItem[] = [
     }),
 ];
 
-const getBacklogItemById = ({ id }: { id: number }): BacklogItem | null => {
+const getById = ({ id }: { id: number }): BacklogItem | null => {
     try {
         return backlogItems.find((backlog_item) => backlog_item.getId() === id) || null;
     } catch (error) {
@@ -28,9 +28,9 @@ const getBacklogItemById = ({ id }: { id: number }): BacklogItem | null => {
     }
 };
 
-const getAllBacklogItems = (): BacklogItem[] => backlogItems;
+const getAll = (): BacklogItem[] => backlogItems;
 
-const createBacklogItem = (value: BacklogItem): BacklogItem => {
+const create = (value: BacklogItem): BacklogItem => {
     try {
         const next_id = Math.max(...backlogItems.map((backlog_item) => backlog_item.getId() ?? 0)) + 1;
         const new_item = new BacklogItem({
@@ -49,7 +49,7 @@ const createBacklogItem = (value: BacklogItem): BacklogItem => {
 };
 
 export default {
-    getBacklogItemById,
-    getAllBacklogItems,
-    createBacklogItem
+    getById,
+    getAll,
+    create
 };

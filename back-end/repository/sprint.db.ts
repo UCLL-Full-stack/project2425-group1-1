@@ -11,20 +11,20 @@ const sprints: Sprint[] = [
         name: 'Sprint 1',
         startDate: new Date('2024-10-01'),
         endDate: new Date('2024-10-14'),
-        backlogItems: [<BacklogItem>backlogItemDB.getBacklogItemById({ id: 1 })],
-        product: <Product>productDB.getProductById({ id: 1 })
+        backlogItems: [<BacklogItem>backlogItemDB.getById({ id: 1 })],
+        product: <Product>productDB.getById({ id: 1 })
     }),
     new Sprint({
         id: 2,
         name: 'Sprint 2',
         startDate: new Date('2024-11-15'),
         endDate: new Date('2024-11-28'),
-        backlogItems: [<BacklogItem>backlogItemDB.getBacklogItemById({ id: 2 })],
-        product: <Product>productDB.getProductById({ id: 2 })
+        backlogItems: [<BacklogItem>backlogItemDB.getById({ id: 2 })],
+        product: <Product>productDB.getById({ id: 2 })
     }),
 ];
 
-const getSprintById = ({ id }: { id: number }): Sprint | null => {
+const getById = ({ id }: { id: number }): Sprint | null => {
     try {
         return sprints.find((sprint) => sprint.getId() === id) || null;
     } catch (error) {
@@ -33,17 +33,9 @@ const getSprintById = ({ id }: { id: number }): Sprint | null => {
     }
 };
 
-const getAllSprints = (): Sprint[] => sprints;
-
-const addBacklogItemToSprint = (id: number, backlog_item: BacklogItem): BacklogItem => {
-    const sprint = getSprintById({ id: id });
-    if (!sprint) throw new Error(`Sprint with id ${id} does not exist.`);
-    sprint.getBacklogItems().push(backlog_item);
-    return backlog_item;
-};
+const getAll = (): Sprint[] => sprints;
 
 export default {
-    getSprintById,
-    getAllSprints,
-    addBacklogItemToSprint
+    getById,
+    getAll
 };
