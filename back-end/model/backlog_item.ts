@@ -1,5 +1,3 @@
-import { Product } from './product';
-
 export class BacklogItem {
     private id?: number;
     private title: string;
@@ -7,7 +5,6 @@ export class BacklogItem {
     private priority: number;
     private estimatedHours: number;
     private actualHours: number;
-    private product?: Product;
 
     constructor(backlogItem: {
         id?: number;
@@ -16,7 +13,6 @@ export class BacklogItem {
         priority: number;
         estimatedHours: number;
         actualHours: number;
-        product?: Product;
     }) {
         this.validate(backlogItem);
 
@@ -26,7 +22,6 @@ export class BacklogItem {
         this.priority = backlogItem.priority;
         this.estimatedHours = backlogItem.estimatedHours;
         this.actualHours = backlogItem.actualHours;
-        this.product = backlogItem.product;
     }
 
     getId(): number | undefined {
@@ -53,10 +48,6 @@ export class BacklogItem {
         return this.actualHours;
     }
 
-    getProduct(): Product | undefined {
-        return this.product;
-    }
-
     private validate(backlogItem: {
         id?: number;
         title: string;
@@ -64,7 +55,6 @@ export class BacklogItem {
         priority: number;
         estimatedHours: number;
         actualHours: number;
-        product?: Product;
     }) {
         if (!backlogItem.title?.trim()) {
             throw new Error('Title is required');

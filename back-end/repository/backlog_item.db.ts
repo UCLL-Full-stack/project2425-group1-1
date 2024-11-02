@@ -38,8 +38,7 @@ const createBacklogItem = (value: BacklogItem): BacklogItem => {
             description: value.getDescription(),
             priority: value.getPriority(),
             estimatedHours: value.getEstimatedHours(),
-            actualHours: value.getActualHours(),
-            product: value.getProduct()
+            actualHours: value.getActualHours()
         });
         backlogItems.push(new_item);
         return new_item;

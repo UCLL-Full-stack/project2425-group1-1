@@ -1,4 +1,5 @@
 import { BacklogItem } from './backlog_item';
+import { Product } from './product';
 
 export class Sprint {
     private id?: number;
@@ -6,6 +7,7 @@ export class Sprint {
     private startDate: Date;
     private endDate: Date;
     private backlogItems: BacklogItem[];
+    private product: Product;
 
     constructor(sprint: {
         id?: number;
@@ -13,6 +15,7 @@ export class Sprint {
         startDate: Date;
         endDate: Date;
         backlogItems: BacklogItem[];
+        product: Product;
     }) {
         this.validate(sprint);
 
@@ -21,6 +24,7 @@ export class Sprint {
         this.startDate = sprint.startDate;
         this.endDate = sprint.endDate;
         this.backlogItems = sprint.backlogItems;
+        this.product = sprint.product;
     }
 
     getId(): number | undefined {
@@ -41,6 +45,10 @@ export class Sprint {
 
     getBacklogItems(): BacklogItem[] {
         return this.backlogItems;
+    }
+
+    getProduct(): Product {
+        return this.product;
     }
 
     private validate(sprint: {

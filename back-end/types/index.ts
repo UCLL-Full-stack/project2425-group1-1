@@ -12,5 +12,4 @@ export type BacklogItemDTO = {
   priority?: number;
   estimatedHours?: number;
   actualHours?: number;
-  product?: ProductDTO;
 };
