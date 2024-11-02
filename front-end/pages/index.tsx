@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import Header from '@components/header';
-import styles from '@styles/home.module.css';
 
 const Home: React.FC = () => {
   return (
@@ -12,7 +11,7 @@ const Home: React.FC = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className={styles.main}>
+      <main>
         <h1>Welcome!</h1>
         <p>
           Agile Scrum Sprint Planner is a full-stack Sprint planner web application designed to

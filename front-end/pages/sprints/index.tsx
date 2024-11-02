@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Header from '@components/header';
 import { useEffect, useState } from 'react';
-import { BacklogItem, Sprint } from '@types';
+import { Sprint } from '@types';
 import SprintService from '@services/SprintService';
 import SprintOverviewTable from '@components/sprints/SprintOverviewTable';
 import SprintDetails from '@components/sprints/SprintDetails';
@@ -31,7 +31,7 @@ const Sprints: React.FC = () => {
                 <title>Sprints</title>
             </Head>
             <Header />
-            <main className="d-flex flex-column justify-content-center align-items-center">
+            <main>
                 <h1>Sprints</h1>
                 <section>
                     <h2>Sprints overview</h2>
