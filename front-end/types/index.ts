@@ -19,7 +19,7 @@ export type BacklogItem = {
   description: string;
   priority: number;
   estimatedHours: number;
-  actualHours: number;
+  actualHours?: number;
   product?: Product;
 };
 
@@ -38,4 +38,9 @@ export type Team = {
   owner?: User;
   members?: User[];
   sprints?: Sprint[];
+};
+
+export type ErrorResponse = {
+  error: string;
+  message: string;
 };
