@@ -1,6 +1,7 @@
 import backlogItemDB from '../repository/backlog_item.db';
 import { BacklogItem } from '../model/backlog_item';
-import { BacklogItemDTO } from '../types';
+import { BacklogItemDTO } from '@types';
+import { throwError } from '@util';
 
 const getAllBacklogItems = (): BacklogItem[] => backlogItemDB.getAllBacklogItems();
 
@@ -12,10 +13,10 @@ const getBacklogItemById = (id: number): BacklogItem => {
 
 const createBacklogItem = (val: BacklogItemDTO): BacklogItem => {
     return backlogItemDB.createBacklogItem(new BacklogItem({
-        title: val.title ?? (() => { throw new Error("title is required") })(),
-        description: val.description ?? (() => { throw new Error("description is required") })(),
-        priority: val.priority ?? (() => { throw new Error("priority is required") })(),
-        estimatedHours: val.estimatedHours ?? (() => { throw new Error("estimatedHours is required") })(),
+        title: val.title ?? throwError("title is required"),
+        description: val.description ?? throwError("description is required"),
+        priority: val.priority ?? throwError("priority is required"),
+        estimatedHours: val.estimatedHours ?? throwError("estimatedHours is required"),
         actualHours: val.actualHours ?? 0
     }));
 };

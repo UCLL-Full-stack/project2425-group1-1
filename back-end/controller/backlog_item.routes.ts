@@ -27,7 +27,7 @@
  */
 import express, { NextFunction, Request, Response } from 'express';
 import backlogItemService from '../service/backlog_item.service';
-import { BacklogItemDTO } from '../types';
+import { BacklogItemDTO } from '@types';
 
 const backlogItemRouter = express.Router();
 
