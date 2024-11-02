@@ -14,13 +14,11 @@ const Home: React.FC = () => {
       <Header />
       <main className={styles.main}>
         <h1>Welcome!</h1>
-        <div className={styles.description}>
-          <p>
-            Agile Scrum Sprint Planner is a full-stack Sprint planner web application designed to<br />
-            encourage developers and team leaders to manage their time better and prioritize their
-            development goals
-          </p>
-        </div>
+        <p>
+          Agile Scrum Sprint Planner is a full-stack Sprint planner web application designed to
+          encourage developers and team leaders to manage their time better and prioritize their
+          development goals
+        </p>
       </main>
     </>
   );
