@@ -16,10 +16,11 @@ const Sprints: React.FC = () => {
         setSprints(await resp.json());
     };
 
-    const backlogAddedCallback = async (new_item: BacklogItem) => {
-        // I suppose it's bad practice to mutate state so we'll fetch a new sprint
-        const resp = await SprintService.getSprintById(String(selectedSprint?.id ?? -1));
-        setSelectedSprint(await resp.json());
+    const sprintUpdatedCallback = async () => {
+        const resp = await SprintService.getAllSprints();
+        const new_sprints = await resp.json() as Array<Sprint>;
+        setSprints(new_sprints);
+        setSelectedSprint(new_sprints.find(x => x.id == selectedSprint?.id) ?? null);
     };
 
     useEffect(() => { getSprints() }, []);
@@ -41,7 +42,7 @@ const Sprints: React.FC = () => {
                     {selectedSprint && (
                         <>
                             <h2>Add new backlog item to {selectedSprint.name}</h2>
-                            <CreateBacklogItemForm sprint={selectedSprint} backlogAddedCallback={backlogAddedCallback} />
+                            <CreateBacklogItemForm sprint={selectedSprint} sprintUpdatedCallback={sprintUpdatedCallback} />
                             <h2>Details of {selectedSprint.name}</h2>
                             <SprintDetails sprint={selectedSprint} />
                         </>

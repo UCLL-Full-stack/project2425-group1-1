@@ -6,10 +6,10 @@ import styles from "@styles/form.module.css";
 
 type Props = {
   sprint: Sprint;
-  backlogAddedCallback: (new_item: BacklogItem) => void;
+  sprintUpdatedCallback: () => void;
 };
 
-const CreateBacklogItemForm: React.FC<Props> = ({ sprint, backlogAddedCallback }: Props) => {
+const CreateBacklogItemForm: React.FC<Props> = ({ sprint, sprintUpdatedCallback }: Props) => {
   const [successMessage, setSuccessMessage] = useState<string>();
   const [errorMessage, setErrorMessage] = useState<string>();
 
@@ -45,7 +45,7 @@ const CreateBacklogItemForm: React.FC<Props> = ({ sprint, backlogAddedCallback }
     }
 
     setSuccessMessage("Successfully added!");
-    backlogAddedCallback(backlog_item);
+    sprintUpdatedCallback();
   };
 
   return (
