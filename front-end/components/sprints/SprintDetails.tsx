@@ -10,26 +10,28 @@ const SprintDetails: React.FC<Props> = ({ sprint }: Props) => {
     <>
       {sprint && (
         <table>
-          <tr>
-            <td>ID:</td>
-            <td>{sprint.id}</td>
-          </tr>
-          <tr>
-            <td>Name:</td>
-            <td>{sprint.name}</td>
-          </tr>
-          <tr>
-            <td>Start date:</td>
-            <td>{sprint.startDate.toString()}</td>
-          </tr>
-          <tr>
-            <td>End date:</td>
-            <td>{sprint.endDate.toString()}</td>
-          </tr>
-          <tr>
-            <td>Backlog Item Count:</td>
-            <td>{sprint.backlogItems.length}</td>
-          </tr>
+          <tbody>
+            <tr>
+              <td>ID:</td>
+              <td>{sprint.id}</td>
+            </tr>
+            <tr>
+              <td>Name:</td>
+              <td>{sprint.name}</td>
+            </tr>
+            <tr>
+              <td>Start date:</td>
+              <td>{sprint.startDate.toString()}</td>
+            </tr>
+            <tr>
+              <td>End date:</td>
+              <td>{sprint.endDate.toString()}</td>
+            </tr>
+            <tr>
+              <td>Backlog Item Count:</td>
+              <td>{sprint.backlogItems.length}</td>
+            </tr>
+          </tbody>
         </table>
       )}
       {sprint.backlogItems && (
