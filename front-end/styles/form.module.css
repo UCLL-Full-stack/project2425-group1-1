@@ -1,0 +1,9 @@
+.backlogItemForm {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1rem;
+    border: 1px solid grey;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
