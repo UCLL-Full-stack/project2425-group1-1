@@ -4,7 +4,7 @@ import Image from 'next/image';
 const Header: React.FC = () => {
   return (
     <header className="px-3 mb-3 border-bottom bg-dark">
-      <nav className="navbar">
+      <nav className="navbar justify-content-center">
         <a className="navbar-brand" href="/">
           <Image
             src="/images/logo.png"
@@ -15,7 +15,7 @@ const Header: React.FC = () => {
           />
         </a>
 
-        <ul className="navbar-nav me-auto">
+        <ul className="navbar-nav">
           <li className="navbar-item">
             <Link href="/" className="nav-link px-4 fs-5 text-white">
               Home
