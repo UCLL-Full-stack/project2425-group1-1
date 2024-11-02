@@ -28,8 +28,8 @@ const SprintDetails: React.FC<Props> = ({ sprint }: Props) => {
               <td>{sprint.endDate.toString()}</td>
             </tr>
             <tr>
-              <td>Backlog Item Count:</td>
-              <td>{sprint.backlogItems.length}</td>
+              <td>Product:</td>
+              <td>{sprint.product.name}</td>
             </tr>
           </tbody>
         </table>
