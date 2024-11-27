@@ -3,7 +3,7 @@ import { BacklogItem } from '../model/backlog_item';
 import { BacklogItemDTO } from '../types';
 import { throwError } from '../util';
 
-const getAllBacklogItems = async (): Promise<BacklogItem[]> => backlogItemDB.getAll();
+const getAllBacklogItems = (): Promise<BacklogItem[]> => backlogItemDB.getAll();
 
 const getBacklogItemById = async (id: number): Promise<BacklogItem> => {
     const backlog_item = await backlogItemDB.getById({ id });
