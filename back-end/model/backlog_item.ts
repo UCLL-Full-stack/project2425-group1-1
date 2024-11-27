@@ -1,3 +1,5 @@
+import { BacklogItem as BacklogItemPrisma } from '@prisma/client';
+
 export class BacklogItem {
     private id?: number;
     private title: string;
@@ -22,6 +24,17 @@ export class BacklogItem {
         this.priority = backlogItem.priority;
         this.estimatedHours = backlogItem.estimatedHours;
         this.actualHours = backlogItem.actualHours;
+    }
+
+    static from({ id, title, description, priority, estimatedHours, actualHours }: BacklogItemPrisma): BacklogItem {
+        return new BacklogItem({
+            id,
+            title,
+            description,
+            priority,
+            estimatedHours,
+            actualHours
+        });
     }
 
     getId(): number | undefined {

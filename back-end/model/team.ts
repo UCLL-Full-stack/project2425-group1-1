@@ -1,5 +1,12 @@
 import { User } from './user';
 import { Sprint } from './sprint';
+import {
+    Team as TeamPrisma,
+    User as UserPrisma,
+    Sprint as SprintPrisma,
+    Product as ProductPrisma,
+    BacklogItem as BacklogItemPrisma
+} from '@prisma/client';
 
 export class Team {
     private id?: number;
@@ -18,6 +25,24 @@ export class Team {
         this.owner = team.owner;
         this.members = team.members || [];
         this.sprints = team.sprints || [];
+    }
+
+    static from({
+        id,
+        name,
+        description,
+        owner,
+        members,
+        sprints
+    }: TeamPrisma & { owner: UserPrisma; members: UserPrisma[]; sprints: (SprintPrisma & { product: ProductPrisma; backlogItems: BacklogItemPrisma[] })[] }): Team {
+        return new Team({
+            id,
+            name,
+            description,
+            owner: User.from(owner),
+            members: members.map((x) => User.from(x)),
+            sprints: sprints.map((x) => Sprint.from(x))
+        });
     }
 
     getId(): number | undefined {

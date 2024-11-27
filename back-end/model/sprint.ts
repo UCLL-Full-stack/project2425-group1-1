@@ -1,5 +1,10 @@
 import { BacklogItem } from './backlog_item';
 import { Product } from './product';
+import {
+    Sprint as SprintPrisma,
+    Product as ProductPrisma,
+    BacklogItem as BacklogItemPrisma
+} from '@prisma/client';
 
 export class Sprint {
     private id?: number;
@@ -25,6 +30,24 @@ export class Sprint {
         this.endDate = sprint.endDate;
         this.backlogItems = sprint.backlogItems;
         this.product = sprint.product;
+    }
+
+    static from({
+        id,
+        name,
+        startDate,
+        endDate,
+        product,
+        backlogItems
+    }: SprintPrisma & { product: ProductPrisma; backlogItems: BacklogItemPrisma[] }): Sprint {
+        return new Sprint({
+            id,
+            name,
+            startDate,
+            endDate,
+            backlogItems: backlogItems.map((x) => BacklogItem.from(x)),
+            product: Product.from(product)
+        });
     }
 
     getId(): number | undefined {

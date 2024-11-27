@@ -1,3 +1,5 @@
+import { Product as ProductPrisma } from '@prisma/client';
+
 export class Product {
     private id?: number;
     private name: string;
@@ -11,6 +13,15 @@ export class Product {
         this.name = product.name;
         this.description = product.description;
         this.releaseDate = product.releaseDate;
+    }
+
+    static from({ id, name, description, releaseDate }: ProductPrisma): Product {
+        return new Product({
+            id,
+            name,
+            description,
+            releaseDate
+        });
     }
 
     getId(): number | undefined {

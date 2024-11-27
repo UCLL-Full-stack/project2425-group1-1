@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                Int      @id @default(autoincrement())
+  firstName         String
+  lastName          String
+  email             String   @unique
+  role              String
+  ownedTeams        Team[]   @relation("TeamOwner")
+  teamMemberships   Team[]   @relation("TeamMembers")
+}
+
+model Team {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  ownerId     Int
+  owner       User     @relation("TeamOwner", fields: [ownerId], references: [id])
+  members     User[]   @relation("TeamMembers")
+  sprints     Sprint[] 
+}
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  releaseDate DateTime
+  sprints     Sprint[] 
+}
+
+model Sprint {
+  id          Int           @id @default(autoincrement())
+  name        String
+  startDate   DateTime
+  endDate     DateTime
+  teamId      Int
+  productId   Int
+  team        Team          @relation(fields: [teamId], references: [id])
+  product     Product       @relation(fields: [productId], references: [id])
+  backlogItems  BacklogItem[]  @relation("SprintBacklogItems")
+}
+
+model BacklogItem {
+  id            Int     @id @default(autoincrement())
+  title         String
+  description   String
+  priority      Int
+  estimatedHours Float
+  actualHours   Float
+  sprints       Sprint[]        @relation("SprintBacklogItems")
+}
