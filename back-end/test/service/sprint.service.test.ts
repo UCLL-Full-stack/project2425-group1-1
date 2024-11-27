@@ -18,7 +18,7 @@ beforeEach(() => {
     });
 });
 
-test('given: a set of sprints, when: getAllSprints is called, then: it should return all sprints', () => {
+test('given: a set of sprints, when: getAllSprints is called, then: it should return all sprints', async () => {
     // given
     mockSprint = new Sprint({
         id: 1,
@@ -33,14 +33,14 @@ test('given: a set of sprints, when: getAllSprints is called, then: it should re
     sprintDB.getAll = jest.fn().mockReturnValue(mockSprints);
 
     // when
-    const result = sprintService.getAllSprints();
+    const result = await sprintService.getAllSprints();
 
     // then
     expect(result).toEqual(mockSprints);
     expect(sprintDB.getAll).toHaveBeenCalledTimes(1);
 });
 
-test('given: a sprint ID, when: getSprintById is called, then: it should return the sprint by ID', () => {
+test('given: a sprint ID, when: getSprintById is called, then: it should return the sprint by ID', async () => {
     // given
     mockSprint = new Sprint({
         id: 1,
@@ -55,14 +55,14 @@ test('given: a sprint ID, when: getSprintById is called, then: it should return 
     sprintDB.getById = jest.fn().mockReturnValue(mockSprint);
 
     // when
-    const result = sprintService.getSprintById(id);
+    const result = await sprintService.getSprintById(id);
 
     // then
     expect(result).toEqual(mockSprint);
     expect(sprintDB.getById).toHaveBeenCalledWith({ id });
 });
 
-test('given: a non-existing sprint ID, when: getSprintById is called, then: it should throw an error', () => {
+test('given: a non-existing sprint ID, when: getSprintById is called, then: it should throw an error', async () => {
     // given
     const id = 999;
 
@@ -72,10 +72,10 @@ test('given: a non-existing sprint ID, when: getSprintById is called, then: it s
     const getSprint = () => sprintService.getSprintById(id);
 
     // then
-    expect(getSprint).toThrow(`Sprint with id ${id} does not exist.`);
+    await expect(getSprint).rejects.toThrow(`Sprint with id ${id} does not exist.`);
 });
 
-test('given: a sprint and backlog item IDs, when: addBacklogItemsToSprint is called, then: it should add backlog items to the sprint', () => {
+test('given: a sprint and backlog item IDs, when: addBacklogItemsToSprint is called, then: it should add backlog items to the sprint', async () => {
     // given
     mockSprint = new Sprint({
         id: 1,
@@ -102,7 +102,7 @@ test('given: a sprint and backlog item IDs, when: addBacklogItemsToSprint is cal
     backlogItemDB.getById = jest.fn().mockReturnValue(mockBacklogItem);
 
     // when
-    const result = sprintService.addBacklogItemsToSprint(sprintId, backlogItemIds);
+    const result = await sprintService.addBacklogItemsToSprint(sprintId, backlogItemIds);
 
     // then
     expect(result).toEqual([mockBacklogItem]);
@@ -111,7 +111,7 @@ test('given: a sprint and backlog item IDs, when: addBacklogItemsToSprint is cal
     expect(backlogItemDB.getById).toHaveBeenCalledWith({ id: 1 });
 });
 
-test('given: a non-existing sprint ID, when: addBacklogItemsToSprint is called, then: it should throw an error', () => {
+test('given: a non-existing sprint ID, when: addBacklogItemsToSprint is called, then: it should throw an error', async () => {
     // given
     const sprintId = 999;
     const backlogItemIds = [1];
@@ -122,10 +122,10 @@ test('given: a non-existing sprint ID, when: addBacklogItemsToSprint is called, 
     const addItems = () => sprintService.addBacklogItemsToSprint(sprintId, backlogItemIds);
 
     // then
-    expect(addItems).toThrow(`Sprint with id ${sprintId} does not exist.`);
+    await expect(addItems).rejects.toThrow(`Sprint with id ${sprintId} does not exist.`);
 });
 
-test('given: a sprint containing an existing backlog item, when: addBacklogItemsToSprint is called, then: it should throw an error', () => {
+test('given: a sprint containing an existing backlog item, when: addBacklogItemsToSprint is called, then: it should throw an error', async () => {
     // given
     mockSprint = new Sprint({
         id: 1,
@@ -146,10 +146,10 @@ test('given: a sprint containing an existing backlog item, when: addBacklogItems
     const addItems = () => sprintService.addBacklogItemsToSprint(sprintId, backlogItemIds);
 
     // then
-    expect(addItems).toThrow(`Backlog item with id ${backlogItemIds[0]} already exists in this sprint.`);
+    await expect(addItems).rejects.toThrow(`Backlog item with id ${backlogItemIds[0]} already exists in this sprint.`);
 });
 
-test('given: a sprint and a non-existing backlog item ID, when: addBacklogItemsToSprint is called, then: it should throw an error', () => {
+test('given: a sprint and a non-existing backlog item ID, when: addBacklogItemsToSprint is called, then: it should throw an error', async () => {
     // given
     mockSprint = new Sprint({
         id: 1,
@@ -170,5 +170,5 @@ test('given: a sprint and a non-existing backlog item ID, when: addBacklogItemsT
     const addItems = () => sprintService.addBacklogItemsToSprint(sprintId, backlogItemIds);
 
     // then
-    expect(addItems).toThrow(`Backlog item with id ${backlogItemIds[0]} does not exist.`);
+    await expect(addItems).rejects.toThrow(`Backlog item with id ${backlogItemIds[0]} does not exist.`);
 });

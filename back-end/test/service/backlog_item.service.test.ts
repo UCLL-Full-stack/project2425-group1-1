@@ -5,7 +5,7 @@ import { BacklogItemDTO } from '../../types';
 
 let mockBacklogItem: BacklogItem;
 
-test('given: a set of backlog items, when: getAllBacklogItems is called, then: it should return all backlog items', () => {
+test('given: a set of backlog items, when: getAllBacklogItems is called, then: it should return all backlog items', async () => {
     // given
     mockBacklogItem = new BacklogItem({
         title: 'Test Backlog Item',
@@ -19,14 +19,14 @@ test('given: a set of backlog items, when: getAllBacklogItems is called, then: i
     backlogItemDB.getAll = jest.fn().mockReturnValue(mockBacklogItems);
 
     // when
-    const result = backlogItemService.getAllBacklogItems();
+    const result = await backlogItemService.getAllBacklogItems();
 
     // then
     expect(result).toEqual(mockBacklogItems);
     expect(backlogItemDB.getAll).toHaveBeenCalledTimes(1);
 });
 
-test('given: a backlog item ID, when: getBacklogItemById is called, then: it should return the backlog item by ID', () => {
+test('given: a backlog item ID, when: getBacklogItemById is called, then: it should return the backlog item by ID', async () => {
     // given
     mockBacklogItem = new BacklogItem({
         title: 'Test Backlog Item',
@@ -40,14 +40,14 @@ test('given: a backlog item ID, when: getBacklogItemById is called, then: it sho
     backlogItemDB.getById = jest.fn().mockReturnValue(mockBacklogItem);
 
     // when
-    const result = backlogItemService.getBacklogItemById(id);
+    const result = await backlogItemService.getBacklogItemById(id);
 
     // then
     expect(result).toEqual(mockBacklogItem);
     expect(backlogItemDB.getById).toHaveBeenCalledWith({ id });
 });
 
-test('given: a non-existing backlog item ID, when: getBacklogItemById is called, then: it should throw an error', () => {
+test('given: a non-existing backlog item ID, when: getBacklogItemById is called, then: it should throw an error', async () => {
     // given
     const id = 999;
 
@@ -57,10 +57,10 @@ test('given: a non-existing backlog item ID, when: getBacklogItemById is called,
     const getBacklogItem = () => backlogItemService.getBacklogItemById(id);
 
     // then
-    expect(getBacklogItem).toThrow(`Backlog item with id ${id} does not exist.`);
+    await expect(getBacklogItem).rejects.toThrow(`Backlog item with id ${id} does not exist.`);
 });
 
-test('given: a backlog item DTO, when: createBacklogItem is called, then: it should create a new backlog item', () => {
+test('given: a backlog item DTO, when: createBacklogItem is called, then: it should create a new backlog item', async () => {
     // given
     const backlogItemDTO = {
         title: 'New Backlog Item',
@@ -74,14 +74,14 @@ test('given: a backlog item DTO, when: createBacklogItem is called, then: it sho
     backlogItemDB.create = jest.fn().mockReturnValue(mockBacklogItem);
 
     // when
-    const result = backlogItemService.createBacklogItem(backlogItemDTO);
+    const result = await backlogItemService.createBacklogItem(backlogItemDTO);
 
     // then
     expect(result).toEqual(mockBacklogItem);
     expect(backlogItemDB.create).toHaveBeenCalledWith(expect.any(BacklogItem));
 });
 
-test('given: a backlog item DTO without a title, when: createBacklogItem is called, then: it should throw an error', () => {
+test('given: a backlog item DTO without a title, when: createBacklogItem is called, then: it should throw an error', async () => {
     // given
     const backlogItemDTO: BacklogItemDTO = {
         description: 'Description',
@@ -94,10 +94,10 @@ test('given: a backlog item DTO without a title, when: createBacklogItem is call
     const createBacklogItem = () => backlogItemService.createBacklogItem(backlogItemDTO);
 
     // then
-    expect(createBacklogItem).toThrow('title is required');
+    await expect(createBacklogItem).rejects.toThrow('title is required');
 });
 
-test('given: a backlog item DTO without a description, when: createBacklogItem is called, then: it should throw an error', () => {
+test('given: a backlog item DTO without a description, when: createBacklogItem is called, then: it should throw an error', async () => {
     // given
     const backlogItemDTO: BacklogItemDTO = {
         title: 'Test Item',
@@ -110,10 +110,10 @@ test('given: a backlog item DTO without a description, when: createBacklogItem i
     const createBacklogItem = () => backlogItemService.createBacklogItem(backlogItemDTO);
 
     // then
-    expect(createBacklogItem).toThrow('description is required');
+    await expect(createBacklogItem).rejects.toThrow('description is required');
 });
 
-test('given: a backlog item DTO without a priority, when: createBacklogItem is called, then: it should throw an error', () => {
+test('given: a backlog item DTO without a priority, when: createBacklogItem is called, then: it should throw an error', async () => {
     // given
     const backlogItemDTO: BacklogItemDTO = {
         title: 'Test Item',
@@ -126,10 +126,10 @@ test('given: a backlog item DTO without a priority, when: createBacklogItem is c
     const createBacklogItem = () => backlogItemService.createBacklogItem(backlogItemDTO);
 
     // then
-    expect(createBacklogItem).toThrow('priority is required');
+    await expect(createBacklogItem).rejects.toThrow('priority is required');
 });
 
-test('given: a backlog item DTO without estimated hours, when: createBacklogItem is called, then: it should throw an error', () => {
+test('given: a backlog item DTO without estimated hours, when: createBacklogItem is called, then: it should throw an error', async () => {
     // given
     const backlogItemDTO: BacklogItemDTO = {
         title: 'Test Item',
@@ -142,5 +142,5 @@ test('given: a backlog item DTO without estimated hours, when: createBacklogItem
     const createBacklogItem = () => backlogItemService.createBacklogItem(backlogItemDTO);
 
     // then
-    expect(createBacklogItem).toThrow('estimatedHours is required');
+    await expect(createBacklogItem).rejects.toThrow('estimatedHours is required');
 });
