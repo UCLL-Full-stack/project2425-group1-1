@@ -48,7 +48,7 @@ const backlogItemRouter = express.Router();
  */
 backlogItemRouter.get('/', async (req: Request, res: Response, next: NextFunction) => {
     try {
-        res.status(200).json(backlogItemService.getAllBacklogItems());
+        res.status(200).json(await backlogItemService.getAllBacklogItems());
     } catch (error) {
         next(error);
     }
@@ -76,7 +76,7 @@ backlogItemRouter.get('/', async (req: Request, res: Response, next: NextFunctio
 backlogItemRouter.post('/', async (req: Request, res: Response, next: NextFunction) => {
     try {
         const backlog_item = <BacklogItemDTO>req.body;
-        res.status(200).json(backlogItemService.createBacklogItem(backlog_item));
+        res.status(200).json(await backlogItemService.createBacklogItem(backlog_item));
     } catch (error) {
         next(error);
     }
@@ -104,7 +104,7 @@ backlogItemRouter.post('/', async (req: Request, res: Response, next: NextFuncti
  */
 backlogItemRouter.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
     try {
-        res.status(200).json(backlogItemService.getBacklogItemById(Number(req.params.id)));
+        res.status(200).json(await backlogItemService.getBacklogItemById(Number(req.params.id)));
     } catch (error) {
         next(error);
     }

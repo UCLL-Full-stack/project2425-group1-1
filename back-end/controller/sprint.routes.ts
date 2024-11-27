@@ -119,7 +119,7 @@ sprintRouter.get('/', async (req: Request, res: Response, next: NextFunction) =>
  */
 sprintRouter.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const sprint = sprintService.getSprintById(Number(req.params.id));
+        const sprint = await sprintService.getSprintById(Number(req.params.id));
         res.status(200).json(sprint);
     } catch (error) {
         next(error);
@@ -160,7 +160,7 @@ sprintRouter.post('/:id/backlog_items', async (req: Request, res: Response, next
     try {
         const sprint_id = Number(req.params.id);
         const backlog_item_ids = <number[]>req.body;
-        res.status(200).json(sprintService.addBacklogItemsToSprint(sprint_id, backlog_item_ids));
+        res.status(200).json(await sprintService.addBacklogItemsToSprint(sprint_id, backlog_item_ids));
     } catch (error) {
         next(error);
     }
