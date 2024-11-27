@@ -1,32 +1,30 @@
 import { Product } from '../model/product';
+import database from './database';
 
-const products: Product[] = [
-    new Product({
-        id: 1,
-        name: 'Prod1',
-        description: 'Implement login and registration functionality',
-        releaseDate: new Date('2024-10-01')
-    }),
-    new Product({
-        id: 2,
-        name: 'Prod2',
-        description: 'Design and implement the dashboard interface',
-        releaseDate: new Date('2024-10-01')
-    }),
-];
-
-const getById = ({ id }: { id: number }): Product | null => {
+const getById = async ({ id }: { id: number }): Promise<Product | null> => {
     try {
-        return products.find((product) => product.getId() === id) || null;
+        const product = await database.product.findUnique({
+            where: { id },
+        });
+        if (!product) return null;
+        return Product.from(product);
     } catch (error) {
         console.error(error);
         throw new Error('Database error. See server log for details.');
     }
 };
 
-const getAll = (): Product[] => products;
+const getAll = async (): Promise<Product[]> => {
+    try {
+        const products = await database.product.findMany();
+        return products.map((x) => Product.from(x));
+    } catch (error) {
+        console.error(error);
+        throw new Error('Database error. See server log for details.');
+    }
+};
 
 export default {
     getById,
-    getAll
+    getAll,
 };

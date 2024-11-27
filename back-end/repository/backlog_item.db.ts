@@ -1,47 +1,41 @@
 import { BacklogItem } from '../model/backlog_item';
+import database from './database';
 
-const backlogItems: BacklogItem[] = [
-    new BacklogItem({
-        id: 1,
-        title: 'User Authentication',
-        description: 'Implement login and registration functionality',
-        priority: 1,
-        estimatedHours: 8,
-        actualHours: 5
-    }),
-    new BacklogItem({
-        id: 2,
-        title: 'Dashboard UI',
-        description: 'Design and implement the dashboard interface',
-        priority: 2,
-        estimatedHours: 10,
-        actualHours: 6
-    }),
-];
-
-const getById = ({ id }: { id: number }): BacklogItem | null => {
+const getById = async ({ id }: { id: number }): Promise<BacklogItem | null> => {
     try {
-        return backlogItems.find((backlog_item) => backlog_item.getId() === id) || null;
+        const backlogItem = await database.backlogItem.findUnique({
+            where: { id },
+        });
+        if (!backlogItem) return null;
+        return BacklogItem.from(backlogItem);
     } catch (error) {
         console.error(error);
         throw new Error('Database error. See server log for details.');
     }
 };
 
-const getAll = (): BacklogItem[] => backlogItems;
-
-const create = (value: BacklogItem): BacklogItem => {
+const getAll = async (): Promise<BacklogItem[]> => {
     try {
-        const next_id = Math.max(...backlogItems.map((backlog_item) => backlog_item.getId() ?? 0)) + 1;
-        const new_item = new BacklogItem({
-            id: next_id, title: value.getTitle(),
-            description: value.getDescription(),
-            priority: value.getPriority(),
-            estimatedHours: value.getEstimatedHours(),
-            actualHours: value.getActualHours()
+        const backlogItems = await database.backlogItem.findMany();
+        return backlogItems.map((x) => BacklogItem.from(x));
+    } catch (error) {
+        console.error(error);
+        throw new Error('Database error. See server log for details.');
+    }
+};
+
+const create = async (value: BacklogItem): Promise<BacklogItem> => {
+    try {
+        const newItem = await database.backlogItem.create({
+            data: {
+                title: value.getTitle(),
+                description: value.getDescription(),
+                priority: value.getPriority(),
+                estimatedHours: value.getEstimatedHours(),
+                actualHours: value.getActualHours(),
+            },
         });
-        backlogItems.push(new_item);
-        return new_item;
+        return BacklogItem.from(newItem);
     } catch (error) {
         console.error(error);
         throw new Error('Database error. See server log for details.');
@@ -51,5 +45,5 @@ const create = (value: BacklogItem): BacklogItem => {
 export default {
     getById,
     getAll,
-    create
+    create,
 };
