@@ -12,11 +12,11 @@ export class Team {
     private id?: number;
     private name: string;
     private description: string;
-    private owner?: User;
+    private owner: User;
     private members: User[];
     private sprints: Sprint[];
 
-    constructor(team: { id?: number; name: string; description: string; owner?: User; members?: User[]; sprints?: Sprint[] }) {
+    constructor(team: { id?: number; name: string; description: string; owner: User; members?: User[]; sprints?: Sprint[] }) {
         this.validate(team);
 
         this.id = team.id;
@@ -57,7 +57,7 @@ export class Team {
         return this.description;
     }
 
-    getOwner(): User | undefined {
+    getOwner(): User {
         return this.owner;
     }
 
@@ -69,7 +69,7 @@ export class Team {
         return this.sprints;
     }
 
-    private validate(team: { id?: number; name: string; description: string; owner?: User; members?: User[]; sprints?: Sprint[] }) {
+    private validate(team: { id?: number; name: string; description: string; owner: User; members?: User[]; sprints?: Sprint[] }) {
         if (!team.name?.trim()) {
             throw new Error('Team name is required');
         }
