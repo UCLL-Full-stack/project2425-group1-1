@@ -21,7 +21,8 @@ app.use(
         secret: process.env.JWT_SECRET || 'default_secret',
         algorithms: ['HS256'],
     }).unless({
-        path: ['/users/login',
+        path: [/^\/api-docs\/?.*/,
+            '/users/login',
             '/users/signup',
             '/status']
     })
@@ -34,6 +35,19 @@ app.use('/users', userRouter);
 app.get('/status', (req, res) => {
     res.json({ message: 'Back-end is running...' });
 });
+
+const swaggerOpts = {
+    definition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'ASSP API',
+            version: '1.0.0',
+        },
+    },
+    apis: ['./controller/*.routes.ts'],
+};
+const swaggerSpec = swaggerJSDoc(swaggerOpts);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     res.status(400).json({ error: err.name, message: err.message });
