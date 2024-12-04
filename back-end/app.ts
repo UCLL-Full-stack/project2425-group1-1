@@ -6,6 +6,8 @@ import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import { sprintRouter } from './controller/sprint.routes';
 import { backlogItemRouter } from './controller/backlog_item.routes';
+import { userRouter } from './controller/user.routes';
+import { expressjwt } from 'express-jwt';
 
 const app = express();
 dotenv.config();
@@ -14,8 +16,20 @@ const port = process.env.APP_PORT || 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
+app.use(
+    expressjwt({
+        secret: process.env.JWT_SECRET || 'default_secret',
+        algorithms: ['HS256'],
+    }).unless({
+        path: ['/users/login',
+            '/users/signup',
+            '/status']
+    })
+);
+
 app.use('/sprints', sprintRouter);
 app.use('/backlog_items', backlogItemRouter);
+app.use('/users', userRouter);
 
 app.get('/status', (req, res) => {
     res.json({ message: 'Back-end is running...' });

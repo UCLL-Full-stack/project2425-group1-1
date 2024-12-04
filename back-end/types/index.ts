@@ -1,3 +1,14 @@
+export type Role = 'admin' | 'manager' | 'developer';
+
+export type UserDTO = {
+  id?: number;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  password?: string;
+  role?: Role;
+};
+
 export type ProductDTO = {
   id?: number;
   name?: string;
@@ -12,4 +23,15 @@ export type BacklogItemDTO = {
   priority?: number;
   estimatedHours?: number;
   actualHours?: number;
+};
+
+export type AuthRequest = {
+  email?: string;
+  password?: string;
+};
+
+export type AuthResponse = {
+  token?: string;
+  email?: string;
+  role?: Role;
 };
