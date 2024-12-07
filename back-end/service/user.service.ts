@@ -1,10 +1,14 @@
 import bcrypt from 'bcrypt';
 import { User } from '../model/user';
 import userDB from '../repository/user.db';
-import { UserDTO, AuthResponse, AuthRequest } from '../types';
+import { UserDTO, AuthResponse, AuthRequest, AuthPayload } from '../types';
 import { generateJWTtoken, throwError } from '../util'
 
-const getAllUsers = async (): Promise<User[]> => userDB.getAll();
+const getAllUsers = async ({ user_id, role }: AuthPayload): Promise<User[]> => {
+    if (role == "admin")
+        return userDB.getAll();
+    return [await userDB.getById({ id: user_id }) ?? throwError("user is null")];
+}
 
 const getUserByEmail = async ({ email }: { email: string }): Promise<User> => {
     const user = await userDB.getByEmail({ email });

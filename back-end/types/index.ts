@@ -35,3 +35,8 @@ export type AuthResponse = {
   email?: string;
   role?: Role;
 };
+
+export type AuthPayload = {
+  user_id: number;
+  role: Role
+};

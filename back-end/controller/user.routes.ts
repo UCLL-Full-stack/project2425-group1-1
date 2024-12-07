@@ -66,7 +66,7 @@
  */
 import express, { NextFunction, Request, Response } from 'express';
 import userService from '../service/user.service';
-import { AuthRequest, UserDTO } from '../types';
+import { AuthPayload, AuthRequest, Role, UserDTO } from '../types';
 
 const userRouter = express.Router();
 
@@ -91,7 +91,8 @@ userRouter.get(
     '/',
     async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const users = await userService.getAllUsers();
+            const request = req as Request & { auth: AuthPayload };
+            const users = await userService.getAllUsers(request.auth);
             res.status(200).json(users);
         } catch (error) {
             next(error);
