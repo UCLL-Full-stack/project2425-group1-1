@@ -18,6 +18,10 @@ const Home: React.FC = () => {
           encourage developers and team leaders to manage their time better and prioritize their
           development goals
         </p>
+        <h2>Login Credentials</h2>
+        <ul>
+          <li>administration@ucll.be : admin</li>
+        </ul>
       </main>
     </>
   );

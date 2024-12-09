@@ -44,3 +44,14 @@ export type ErrorResponse = {
   error: string;
   message: string;
 };
+
+export type AuthRequest = {
+  email?: string;
+  password?: string;
+};
+
+export type AuthResponse = {
+  token?: string;
+  email?: string;
+  role?: string;
+};

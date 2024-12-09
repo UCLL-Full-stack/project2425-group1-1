@@ -60,7 +60,7 @@ const CreateBacklogItemForm: React.FC<Props> = ({ sprint, sprintUpdatedCallback 
       )}
       {sprint && (
         <>
-          <form onSubmit={submitHandler} className={styles.backlogItemForm}>
+          <form onSubmit={submitHandler} className={styles.classicForm}>
             <label htmlFor="formTitle">Title</label>
             <input className="form-control" id="formTitle" required name="title" />
             <label htmlFor="formDescription">Description</label>
