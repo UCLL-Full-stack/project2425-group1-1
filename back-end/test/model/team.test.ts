@@ -2,6 +2,7 @@ import { Team } from '../../model/team';
 import { User } from '../../model/user';
 import { Sprint } from '../../model/sprint';
 import { Product } from '../../model/product';
+import { Role } from '../../types';
 
 test('given: valid values for team, when: team is created, then: team is created with those values', () => {
     // given
@@ -10,7 +11,8 @@ test('given: valid values for team, when: team is created, then: team is created
         firstName: 'Owner',
         lastName: 'One',
         email: 'owner.one@example.com',
-        role: 'owner',
+        password: 'aaa',
+        role: 'admin' as Role,
     });
 
     const member = new User({
@@ -18,7 +20,8 @@ test('given: valid values for team, when: team is created, then: team is created
         firstName: 'Member',
         lastName: 'Two',
         email: 'member.two@example.com',
-        role: 'user',
+        password: 'aaa',
+        role: 'user' as Role,
     });
 
     const sprint = new Sprint({
@@ -60,7 +63,8 @@ test('given: missing team name, when: team is created, then: an error is thrown'
             firstName: 'Owner',
             lastName: 'One',
             email: 'owner.one@example.com',
-            role: 'owner',
+            password: 'aaa',
+            role: 'user' as Role,
         }),
     };
 
@@ -80,7 +84,8 @@ test('given: missing team description, when: team is created, then: an error is 
             firstName: 'Owner',
             lastName: 'One',
             email: 'owner.one@example.com',
-            role: 'owner',
+            password: 'aaa',
+            role: 'admin' as Role,
         }),
     };
 
@@ -101,7 +106,8 @@ test('given: valid team without members or sprints, when: team is created, then:
             firstName: 'Owner',
             lastName: 'One',
             email: 'owner.one@example.com',
-            role: 'owner',
+            password: 'aaa',
+            role: 'admin' as Role,
         }),
     };
 
@@ -119,14 +125,16 @@ test('given: a team with multiple members, when: team is created, then: team inc
         firstName: 'Alice',
         lastName: 'Smith',
         email: 'alice.smith@example.com',
-        role: 'user',
+        password: 'aaa',
+        role: 'user' as Role,
     });
 
     const member2 = new User({
         firstName: 'Bob',
         lastName: 'Brown',
         email: 'bob.brown@example.com',
-        role: 'tester',
+        password: 'aaa',
+        role: 'user' as Role,
     });
 
     const teamData = {
@@ -137,7 +145,8 @@ test('given: a team with multiple members, when: team is created, then: team inc
             firstName: 'Owner',
             lastName: 'Two',
             email: 'owner.two@example.com',
-            role: 'owner',
+            password: 'aaa',
+            role: 'user' as Role,
         }),
         members: [member1, member2],
     };

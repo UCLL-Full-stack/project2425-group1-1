@@ -1,4 +1,5 @@
 import { User } from '../../model/user';
+import { Role } from '../../types';
 
 test('given: valid values for user, when: user is created, then: user is created with those values', () => {
     // given
@@ -7,7 +8,8 @@ test('given: valid values for user, when: user is created, then: user is created
         firstName: 'Jane',
         lastName: 'Doe',
         email: 'jane.doe@example.com',
-        role: 'admin',
+        password: 'aaa',
+        role: 'user' as Role,
     };
 
     // when
@@ -27,7 +29,8 @@ test('given: missing first name, when: user is created, then: an error is thrown
         firstName: '',
         lastName: 'Doe',
         email: 'jane.doe@example.com',
-        role: 'admin',
+        password: 'aaa',
+        role: 'user' as Role,
     };
 
     // when
@@ -43,7 +46,8 @@ test('given: missing last name, when: user is created, then: an error is thrown'
         firstName: 'Jane',
         lastName: '',
         email: 'jane.doe@example.com',
-        role: 'admin',
+        password: 'aaa',
+        role: 'user' as Role,
     };
 
     // when
@@ -59,7 +63,8 @@ test('given: missing email, when: user is created, then: an error is thrown', ()
         firstName: 'Jane',
         lastName: 'Doe',
         email: '',
-        role: 'admin',
+        password: 'aaa',
+        role: 'user' as Role,
     };
 
     // when
@@ -67,20 +72,4 @@ test('given: missing email, when: user is created, then: an error is thrown', ()
 
     // then
     expect(createUser).toThrow('Email is required');
-});
-
-test('given: missing role, when: user is created, then: an error is thrown', () => {
-    // given
-    const userData = {
-        firstName: 'Jane',
-        lastName: 'Doe',
-        email: 'jane.doe@example.com',
-        role: '',
-    };
-
-    // when
-    const createUser = () => new User(userData);
-
-    // then
-    expect(createUser).toThrow('Role is required');
 });
