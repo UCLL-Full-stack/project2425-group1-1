@@ -18,7 +18,7 @@ test('given: valid values for team, when: team is created, then: team is created
         firstName: 'Member',
         lastName: 'Two',
         email: 'member.two@example.com',
-        role: 'developer',
+        role: 'user',
     });
 
     const sprint = new Sprint({
@@ -119,7 +119,7 @@ test('given: a team with multiple members, when: team is created, then: team inc
         firstName: 'Alice',
         lastName: 'Smith',
         email: 'alice.smith@example.com',
-        role: 'developer',
+        role: 'user',
     });
 
     const member2 = new User({

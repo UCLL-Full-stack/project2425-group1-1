@@ -62,11 +62,11 @@
  *               $ref: '#/components/schemas/Role'
  *      Role:
  *          type: string
- *          enum: [admin, manager, developer]
+ *          enum: [admin, manager, user]
  */
 import express, { NextFunction, Request, Response } from 'express';
 import userService from '../service/user.service';
-import { AuthPayload, AuthRequest, Role, UserDTO } from '../types';
+import { AuthPayload, AuthRequest, UserDTO } from '../types';
 
 const userRouter = express.Router();
 

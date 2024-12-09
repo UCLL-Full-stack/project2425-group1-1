@@ -19,13 +19,12 @@ const getUserByEmail = async ({ email }: { email: string }): Promise<User> => {
 };
 
 const createUser = async ({
-    firstName, lastName, email, password, role
+    firstName, lastName, email, password
 }: UserDTO): Promise<User> => {
     if (firstName == undefined) throw new Error("firstName is required");
     if (lastName == undefined) throw new Error("lastName is required");
     if (email == undefined) throw new Error("email is required");
     if (password == undefined) throw new Error("password is required");
-    if (role == undefined) throw new Error("role is required");
 
     if (await userDB.getByEmail({ email }))
         throw new Error(`User with email: ${email} already exists.`);
@@ -36,7 +35,7 @@ const createUser = async ({
         lastName,
         email,
         password,
-        role
+        role: "user"
     }));
 };
 
