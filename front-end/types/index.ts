@@ -3,7 +3,8 @@ export type User = {
   firstName: string;
   lastName: string;
   email: string;
-  role: string
+  password?: string;
+  role?: string
 };
 
 export type Product = {

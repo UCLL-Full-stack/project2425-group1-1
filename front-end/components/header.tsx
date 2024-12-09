@@ -46,7 +46,7 @@ const Header: React.FC = () => {
                 className="nav-link px-4 fs-5 text-white"
               >Logout</a></li>
           </>)}
-          {!authData && (
+          {!authData && (<>
             <li className="navbar-item">
               <Link
                 href="/login"
@@ -54,7 +54,14 @@ const Header: React.FC = () => {
                 Login
               </Link>
             </li>
-          )}
+            <li className="navbar-item">
+              <Link
+                href="/signup"
+                className="nav-link px-4 fs-5 text-white">
+                Sign-up
+              </Link>
+            </li>
+          </>)}
         </ul>
       </nav>
     </header>
