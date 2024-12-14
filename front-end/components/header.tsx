@@ -48,11 +48,14 @@ const Header: React.FC = () => {
               </Link>
             </li>
             <li className="navbar-item">
-              <a
+              <Link
                 href="/login"
                 onClick={handleLogout}
                 className="nav-link px-4 fs-5 text-white"
-              >{t('header.logout')}</a></li>
+              >
+                {t('header.logout')}
+              </Link>
+            </li>
           </>)}
           {!authData && (<>
             <li className="navbar-item">
@@ -70,7 +73,7 @@ const Header: React.FC = () => {
               </Link>
             </li>
           </>)}
-          <Language/>
+          <Language />
         </ul>
       </nav>
     </header>
