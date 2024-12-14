@@ -33,7 +33,33 @@ const getAll = async (): Promise<Sprint[]> => {
     }
 };
 
+const save = async (sprint: Sprint): Promise<Sprint> => {
+    try {
+        const updatedSprint = await database.sprint.update({
+            where: { id: sprint.getId() },
+            data: {
+                name: sprint.getName(),
+                startDate: sprint.getStartDate(),
+                endDate: sprint.getEndDate(),
+                productId: sprint.getProduct()?.getId(),
+                backlogItems: {
+                    set: sprint.getBacklogItems().map(item => ({ id: item.getId() })),
+                },
+            },
+            include: {
+                backlogItems: true,
+                product: true,
+            },
+        });
+        return Sprint.from(updatedSprint);
+    } catch (error) {
+        console.error(error);
+        throw new Error('Database error. See server log for details.');
+    }
+};
+
 export default {
     getById,
     getAll,
+    save
 };

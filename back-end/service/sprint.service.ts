@@ -27,6 +27,8 @@ const addBacklogItemsToSprint = async (sprint_id: number, backlog_item_ids: numb
     }));
 
     sprint.getBacklogItems().push(...itemsToAdd);
+    await sprintDB.save(sprint);
+
     return itemsToAdd;
 };
 
