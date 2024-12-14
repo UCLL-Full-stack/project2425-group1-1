@@ -16,6 +16,7 @@ const Language: React.FC = () => {
     >
       <option value="en">English</option>
       <option value="tr">Turkish</option>
+      <option value="sr">Serbian</option>
     </select>
   );
 };

@@ -1,0 +1,70 @@
+{
+    "app": {
+        "title": "A.S.S.P."
+    },
+    "home": {
+        "welcomeMessage": "Dobrodošli",
+        "logout": "Odjava",
+        "appDescription": "Agile Scrum Sprint Planner je full-stack web aplikacija za planiranje Sprinta dizajnirana da podstakne programere i vođe timova da bolje upravljaju svojim vremenom i prioritizuju svoje razvojne ciljeve"
+    },
+    "users": {
+        "title": "Korisnici",
+        "overview": "Pregled korisnika"
+    },
+    "sprints": {
+        "title": "Sprintovi",
+        "overview": "Pregled sprintova",
+        "addNewBacklogItem": "Dodaj novi zadatak u {{sprintName}}",
+        "detailsOf": "Detalji o {{sprintName}}"
+    },
+    "signup": {
+        "signUp": "Registracija"
+    },
+    "login": {
+        "login": "Prijava",
+        "credentials": "Podaci za prijavu"
+    },
+    "common": {
+        "name": "Ime",
+        "signUp": "Registracija",
+        "login": "Prijava",
+        "startDate": "Datum početka",
+        "endDate": "Datum završetka",
+        "backlogItemCount": "Broj zadataka",
+        "email": "E-mail",
+        "password": "Lozinka",
+        "firstName": "Ime",
+        "lastName": "Prezime",
+        "create": "Kreiraj"
+    },
+    "userOverviewTable": {
+        "role": "Uloga"
+    },
+    "sprintDetails": {
+        "id": "ID",
+        "product": "Proizvod",
+        "backlogItems": {
+            "id": "ID",
+            "title": "Naslov",
+            "description": "Opis",
+            "priority": "Prioritet",
+            "estimatedHours": "Procijenjeni sati",
+            "actualHours": "Stvarni sati"
+        }
+    },
+    "createBacklogItemForm": {
+        "title": "Naslov",
+        "description": "Opis",
+        "priority": "Prioritet",
+        "estimatedHours": "Procijenjeni sati",
+        "successMessage": "Uspešno dodato!"
+    },
+    "header": {
+        "home": "Početna",
+        "sprints": "Sprintovi",
+        "users": "Korisnici",
+        "logout": "Odjava",
+        "login": "Prijava",
+        "signup": "Registracija"
+    }
+}
