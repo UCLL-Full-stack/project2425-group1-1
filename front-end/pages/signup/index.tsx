@@ -11,11 +11,11 @@ const Signup: React.FC = () => {
     return (
         <>
             <Head>
-                <title>{t('signup.signUp')}</title>
+                <title>{t('common.signUp')}</title>
             </Head>
             <Header />
             <main>
-                <h1>{t('signup.signUp')}</h1>
+                <h1>{t('common.signUp')}</h1>
                 <section>
                     <UserSignupForm />
                 </section>

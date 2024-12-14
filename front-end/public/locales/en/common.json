@@ -1,46 +1,66 @@
 {
-    "app.title": "A.S.S.P.",
-    "home.welcomeMessage": "Welcome",
-    "home.logout": "Logout",
-    "users.title": "Users",
-    "users.overview": "Users overview",
-    "sprints.title": "Sprints",
-    "sprints.overview": "Sprints overview",
-    "sprints.addNewBacklogItem": "Add new backlog item to {sprintName}",
-    "sprints.detailsOf": "Details of {sprintName}",
-    "signup.signUp": "Sign-up",
-    "login.login": "Login",
-    "common.name": "Name",
-    "common.startDate": "Start date",
-    "common.endDate": "End date",
-    "common.backlogItemCount": "Backlog item count",
-    "common.email": "E-mail",
-    "common.password": "Password",
-    "common.firstName": "First Name",
-    "common.lastName": "Last Name",
-    "common.create": "Create",
-    "home.appDescription": "Agile Scrum Sprint Planner is a full-stack Sprint planner web application designed to encourage developers and team leaders to manage their time better and prioritize their development goals",
-    "login.credentials": "Login Credentials",
-    "signupForm.signUp": "Sign-up",
-    "loginForm.login": "Login",
-    "userOverviewTable.role": "Role",
-    "sprintDetails.id": "ID",
-    "sprintDetails.product": "Product",
-    "sprintDetails.backlogItems.id": "ID",
-    "sprintDetails.backlogItems.title": "Title",
-    "sprintDetails.backlogItems.description": "Description",
-    "sprintDetails.backlogItems.priority": "Priority",
-    "sprintDetails.backlogItems.estimatedHours": "Estimated hours",
-    "sprintDetails.backlogItems.actualHours": "Actual hours",
-    "createBacklogItemForm.title": "Title",
-    "createBacklogItemForm.description": "Description",
-    "createBacklogItemForm.priority": "Priority",
-    "createBacklogItemForm.estimatedHours": "Estimated Hours",
-    "createBacklogItemForm.successMessage": "Successfully added!",
-    "header.home": "Home",
-    "header.sprints": "Sprints",
-    "header.users": "Users",
-    "header.logout": "Logout",
-    "header.login": "Login",
-    "header.signup": "Sign-up"
+    "app": {
+        "title": "A.S.S.P."
+    },
+    "home": {
+        "welcomeMessage": "Welcome",
+        "logout": "Logout",
+        "appDescription": "Agile Scrum Sprint Planner is a full-stack Sprint planner web application designed to encourage developers and team leaders to manage their time better and prioritize their development goals"
+    },
+    "users": {
+        "title": "Users",
+        "overview": "Users overview"
+    },
+    "sprints": {
+        "title": "Sprints",
+        "overview": "Sprints overview",
+        "addNewBacklogItem": "Add new backlog item to {{sprintName}}",
+        "detailsOf": "Details of {{sprintName}}"
+    },
+    "login": {
+        "credentials": "Login Credentials"
+    },
+    "common": {
+        "name": "Name",
+        "signUp": "Sign-up",
+        "login": "Login",
+        "startDate": "Start date",
+        "endDate": "End date",
+        "backlogItemCount": "Backlog item count",
+        "email": "E-mail",
+        "password": "Password",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "create": "Create"
+    },
+    "userOverviewTable": {
+        "role": "Role"
+    },
+    "sprintDetails": {
+        "id": "ID",
+        "product": "Product",
+        "backlogItems": {
+            "id": "ID",
+            "title": "Title",
+            "description": "Description",
+            "priority": "Priority",
+            "estimatedHours": "Estimated hours",
+            "actualHours": "Actual hours"
+        }
+    },
+    "createBacklogItemForm": {
+        "title": "Title",
+        "description": "Description",
+        "priority": "Priority",
+        "estimatedHours": "Estimated Hours",
+        "successMessage": "Successfully added!"
+    },
+    "header": {
+        "home": "Home",
+        "sprints": "Sprints",
+        "users": "Users",
+        "logout": "Logout",
+        "login": "Login",
+        "signup": "Sign-up"
+    }
 }

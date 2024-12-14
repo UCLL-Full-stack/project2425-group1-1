@@ -41,7 +41,7 @@ const UserLoginForm: React.FC = () => {
         <label htmlFor="passInput">{t('common.password')}</label>
         <input className="form-control" id="passInput" type="password" required name="password" />
         <button type="submit" className="btn btn-primary">
-          {t('login.login')}
+          {t('common.login')}
         </button>
       </form>
     </>

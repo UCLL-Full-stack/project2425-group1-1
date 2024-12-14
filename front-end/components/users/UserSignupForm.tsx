@@ -81,7 +81,7 @@ const UserSignupForm: React.FC = () => {
           name="password"
         />
         <button type="submit" className="btn btn-primary">
-          {t('signup.signUp')}
+          {t('common.signUp')}
         </button>
       </form>
     </>

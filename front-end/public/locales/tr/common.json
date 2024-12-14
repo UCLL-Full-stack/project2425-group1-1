@@ -1,46 +1,66 @@
 {
-    "app.title": "A.S.S.P.",
-    "home.welcomeMessage": "Hoş geldiniz",
-    "home.logout": "Çıkış Yap",
-    "users.title": "Kullanıcılar",
-    "users.overview": "Kullanıcılar genel bakış",
-    "sprints.title": "Sprintler",
-    "sprints.overview": "Sprintler genel bakış",
-    "sprints.addNewBacklogItem": "{sprintName} için yeni görev ekle",
-    "sprints.detailsOf": "{sprintName} detayları",
-    "signup.signUp": "Kaydol",
-    "login.login": "Giriş Yap",
-    "common.name": "İsim",
-    "common.startDate": "Başlangıç tarihi",
-    "common.endDate": "Bitiş tarihi",
-    "common.backlogItemCount": "Görev sayısı",
-    "common.email": "E-posta",
-    "common.password": "Şifre",
-    "common.firstName": "İsim",
-    "common.lastName": "Soyisim",
-    "common.create": "Oluştur",
-    "home.appDescription": "Agile Scrum Sprint Planner, geliştiricilerin ve ekip liderlerinin zamanlarını daha iyi yönetmelerini ve geliştirme hedeflerini önceliklendirmelerini teşvik etmek için tasarlanmış tam yığın bir Sprint planlayıcı web uygulamasıdır",
-    "login.credentials": "Giriş Bilgileri",
-    "signupForm.signUp": "Kaydol",
-    "loginForm.login": "Giriş Yap",
-    "userOverviewTable.role": "Rol",
-    "sprintDetails.id": "ID",
-    "sprintDetails.product": "Ürün",
-    "sprintDetails.backlogItems.id": "ID",
-    "sprintDetails.backlogItems.title": "Başlık",
-    "sprintDetails.backlogItems.description": "Açıklama",
-    "sprintDetails.backlogItems.priority": "Öncelik",
-    "sprintDetails.backlogItems.estimatedHours": "Tahmini saatler",
-    "sprintDetails.backlogItems.actualHours": "Gerçek saatler",
-    "createBacklogItemForm.title": "Başlık",
-    "createBacklogItemForm.description": "Açıklama",
-    "createBacklogItemForm.priority": "Öncelik",
-    "createBacklogItemForm.estimatedHours": "Tahmini saatler",
-    "createBacklogItemForm.successMessage": "Başarıyla eklendi!",
-    "header.home": "Ana Sayfa",
-    "header.sprints": "Sprintler",
-    "header.users": "Kullanıcılar",
-    "header.logout": "Çıkış Yap",
-    "header.login": "Giriş Yap",
-    "header.signup": "Kaydol"
+    "app": {
+        "title": "A.S.S.P."
+    },
+    "home": {
+        "welcomeMessage": "Hoş geldiniz",
+        "logout": "Çıkış Yap",
+        "appDescription": "Agile Scrum Sprint Planner, geliştiricilerin ve ekip liderlerinin zamanlarını daha iyi yönetmelerini ve geliştirme hedeflerini önceliklendirmelerini teşvik etmek için tasarlanmış tam yığın bir Sprint planlayıcı web uygulamasıdır"
+    },
+    "users": {
+        "title": "Kullanıcılar",
+        "overview": "Kullanıcılar genel bakış"
+    },
+    "sprints": {
+        "title": "Sprintler",
+        "overview": "Sprintler genel bakış",
+        "addNewBacklogItem": "{{sprintName}} için yeni görev ekle",
+        "detailsOf": "{{sprintName}} detayları"
+    },
+    "login": {
+        "credentials": "Giriş Bilgileri"
+    },
+    "common": {
+        "login": "Giriş Yap",
+        "signUp": "Kaydol",
+        "name": "İsim",
+        "startDate": "Başlangıç tarihi",
+        "endDate": "Bitiş tarihi",
+        "backlogItemCount": "Görev sayısı",
+        "email": "E-posta",
+        "password": "Şifre",
+        "firstName": "İsim",
+        "lastName": "Soyisim",
+        "create": "Oluştur"
+    },
+    "userOverviewTable": {
+        "role": "Rol"
+    },
+    "sprintDetails": {
+        "id": "ID",
+        "product": "Ürün",
+        "backlogItems": {
+            "id": "ID",
+            "title": "Başlık",
+            "description": "Açıklama",
+            "priority": "Öncelik",
+            "estimatedHours": "Tahmini saatler",
+            "actualHours": "Gerçek saatler"
+        }
+    },
+    "createBacklogItemForm": {
+        "title": "Başlık",
+        "description": "Açıklama",
+        "priority": "Öncelik",
+        "estimatedHours": "Tahmini saatler",
+        "successMessage": "Başarıyla eklendi!"
+    },
+    "header": {
+        "home": "Ana Sayfa",
+        "sprints": "Sprintler",
+        "users": "Kullanıcılar",
+        "logout": "Çıkış Yap",
+        "login": "Giriş Yap",
+        "signup": "Kaydol"
+    }
 }
