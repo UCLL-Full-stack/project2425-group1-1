@@ -1,22 +1,25 @@
 import React from 'react';
 import { Sprint } from '@types';
+import { useTranslation } from 'next-i18next';
 
 type Props = {
   sprints: Sprint[] | null;
   selectSprint: (sprint: Sprint) => void;
 };
 
-const TeamOverviewTable: React.FC<Props> = ({ sprints, selectSprint }: Props) => {
+const SprintOverviewTable: React.FC<Props> = ({ sprints, selectSprint }: Props) => {
+  const { t } = useTranslation();
+
   return (
     <>
       {sprints && (
         <table className="table table-hover">
           <thead>
             <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Start date</th>
-              <th scope="col">End date</th>
-              <th scope="col">Backlog item count</th>
+              <th scope="col">{t('common.name')}</th>
+              <th scope="col">{t('common.startDate')}</th>
+              <th scope="col">{t('common.endDate')}</th>
+              <th scope="col">{t('common.backlogItemCount')}</th>
             </tr>
           </thead>
           <tbody>
@@ -35,4 +38,4 @@ const TeamOverviewTable: React.FC<Props> = ({ sprints, selectSprint }: Props) =>
   );
 };
 
-export default TeamOverviewTable;
+export default SprintOverviewTable;

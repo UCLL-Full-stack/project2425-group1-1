@@ -1,34 +1,37 @@
 import React from 'react';
 import { Sprint } from '@types';
+import { useTranslation } from 'next-i18next';
 
 type Props = {
   sprint: Sprint;
 };
 
 const SprintDetails: React.FC<Props> = ({ sprint }: Props) => {
+  const { t } = useTranslation();
+
   return (
     <>
       {sprint && (
         <table>
           <tbody>
             <tr>
-              <td>ID:</td>
+              <td>{t('sprintDetails.id')}:</td>
               <td>{sprint.id}</td>
             </tr>
             <tr>
-              <td>Name:</td>
+              <td>{t('common.name')}:</td>
               <td>{sprint.name}</td>
             </tr>
             <tr>
-              <td>Start date:</td>
+              <td>{t('common.startDate')}:</td>
               <td>{sprint.startDate.toString()}</td>
             </tr>
             <tr>
-              <td>End date:</td>
+              <td>{t('common.endDate')}:</td>
               <td>{sprint.endDate.toString()}</td>
             </tr>
             <tr>
-              <td>Product:</td>
+              <td>{t('sprintDetails.product')}:</td>
               <td>{sprint.product.name}</td>
             </tr>
           </tbody>
@@ -38,12 +41,12 @@ const SprintDetails: React.FC<Props> = ({ sprint }: Props) => {
         <table className="table table-hover">
           <thead>
             <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Title</th>
-              <th scope="col">Description</th>
-              <th scope="col">Priority</th>
-              <th scope="col">Estimated hours</th>
-              <th scope="col">Actual hours</th>
+              <th scope="col">{t('sprintDetails.backlogItems.id')}</th>
+              <th scope="col">{t('sprintDetails.backlogItems.title')}</th>
+              <th scope="col">{t('sprintDetails.backlogItems.description')}</th>
+              <th scope="col">{t('sprintDetails.backlogItems.priority')}</th>
+              <th scope="col">{t('sprintDetails.backlogItems.estimatedHours')}</th>
+              <th scope="col">{t('sprintDetails.backlogItems.actualHours')}</th>
             </tr>
           </thead>
           <tbody>

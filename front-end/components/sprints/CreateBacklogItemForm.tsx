@@ -3,6 +3,7 @@ import { Sprint, BacklogItem, ErrorResponse } from "@types";
 import SprintService from "@services/SprintService";
 import BacklogItemService from "@services/BacklogItemService";
 import styles from "@styles/form.module.css";
+import { useTranslation } from 'next-i18next';
 
 type Props = {
   sprint: Sprint;
@@ -12,6 +13,7 @@ type Props = {
 const CreateBacklogItemForm: React.FC<Props> = ({ sprint, sprintUpdatedCallback }: Props) => {
   const [successMessage, setSuccessMessage] = useState<string>();
   const [errorMessage, setErrorMessage] = useState<string>();
+  const { t } = useTranslation();
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     const form = new FormData(e.currentTarget);
@@ -44,7 +46,7 @@ const CreateBacklogItemForm: React.FC<Props> = ({ sprint, sprintUpdatedCallback 
       return;
     }
 
-    setSuccessMessage("Successfully added!");
+    setSuccessMessage(t('createBacklogItemForm.successMessage'));
     sprintUpdatedCallback();
   };
 
@@ -61,15 +63,17 @@ const CreateBacklogItemForm: React.FC<Props> = ({ sprint, sprintUpdatedCallback 
       {sprint && (
         <>
           <form onSubmit={submitHandler} className={styles.classicForm}>
-            <label htmlFor="formTitle">Title</label>
+            <label htmlFor="formTitle">{t('createBacklogItemForm.title')}</label>
             <input className="form-control" id="formTitle" required name="title" />
-            <label htmlFor="formDescription">Description</label>
+            <label htmlFor="formDescription">{t('createBacklogItemForm.description')}</label>
             <input className="form-control" id="formDescription" required name="description" />
-            <label htmlFor="formPriority">Priority</label>
+            <label htmlFor="formPriority">{t('createBacklogItemForm.priority')}</label>
             <input className="form-control" id="formPriority" required type="number" name="priority" />
-            <label htmlFor="formEstimatedHours">Estimated Hours</label>
+            <label htmlFor="formEstimatedHours">{t('createBacklogItemForm.estimatedHours')}</label>
             <input className="form-control" id="formEstimatedHours" required type="number" name="estimatedHours" />
-            <button type="submit" className="btn btn-primary">Create</button>
+            <button type="submit" className="btn btn-primary">
+              {t('common.create')}
+            </button>
           </form>
         </>
       )}

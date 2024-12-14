@@ -3,10 +3,12 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import styles from "@styles/form.module.css";
 import { ErrorResponse } from "@types";
+import { useTranslation } from 'next-i18next';
 
 const UserSignupForm: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const router = useRouter();
+  const { t } = useTranslation();
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     const form = new FormData(e.currentTarget);
@@ -49,28 +51,28 @@ const UserSignupForm: React.FC = () => {
         </div>
       )}
       <form onSubmit={submitHandler} className={styles.classicForm}>
-        <label htmlFor="firstNameInput">First Name</label>
+        <label htmlFor="firstNameInput">{t('common.firstName')}</label>
         <input
           className="form-control"
           id="firstNameInput"
           required
           name="firstName"
         />
-        <label htmlFor="lastNameInput">Last Name</label>
+        <label htmlFor="lastNameInput">{t('common.lastName')}</label>
         <input
           className="form-control"
           id="lastNameInput"
           required
           name="lastName"
         />
-        <label htmlFor="emailInput">E-mail</label>
+        <label htmlFor="emailInput">{t('common.email')}</label>
         <input
           className="form-control"
           id="emailInput"
           required
           name="email"
         />
-        <label htmlFor="passInput">Password</label>
+        <label htmlFor="passInput">{t('common.password')}</label>
         <input
           className="form-control"
           id="passInput"
@@ -79,7 +81,7 @@ const UserSignupForm: React.FC = () => {
           name="password"
         />
         <button type="submit" className="btn btn-primary">
-          Sign-up
+          {t('signup.signUp')}
         </button>
       </form>
     </>

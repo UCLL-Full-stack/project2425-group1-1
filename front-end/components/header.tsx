@@ -2,8 +2,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { AuthResponse } from '@types';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'next-i18next';
 
 const Header: React.FC = () => {
+  const { t } = useTranslation('common');
   const [authData, setAuthData] = useState<AuthResponse | null>(null);
 
   useEffect(() => {
@@ -30,18 +32,18 @@ const Header: React.FC = () => {
         <ul className="navbar-nav">
           <li className="navbar-item">
             <Link href="/" className="nav-link px-4 fs-5 text-white">
-              Home
+              {t('header.home')}
             </Link>
           </li>
           {authData && (<>
             <li className="navbar-item">
               <Link href="/sprints" className="nav-link px-4 fs-5 text-white">
-                Sprints
+                {t('header.sprints')}
               </Link>
             </li>
             <li className="navbar-item">
               <Link href="/users" className="nav-link px-4 fs-5 text-white">
-                Users
+                {t('header.users')}
               </Link>
             </li>
             <li className="navbar-item">
@@ -49,21 +51,21 @@ const Header: React.FC = () => {
                 href="/login"
                 onClick={handleLogout}
                 className="nav-link px-4 fs-5 text-white"
-              >Logout</a></li>
+              >{t('header.logout')}</a></li>
           </>)}
           {!authData && (<>
             <li className="navbar-item">
               <Link
                 href="/login"
                 className="nav-link px-4 fs-5 text-white">
-                Login
+                {t('header.login')}
               </Link>
             </li>
             <li className="navbar-item">
               <Link
                 href="/signup"
                 className="nav-link px-4 fs-5 text-white">
-                Sign-up
+                {t('header.signup')}
               </Link>
             </li>
           </>)}

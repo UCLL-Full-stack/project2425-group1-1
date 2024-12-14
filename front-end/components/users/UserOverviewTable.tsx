@@ -1,21 +1,24 @@
 import React from 'react';
 import { User } from '@types';
+import { useTranslation } from 'next-i18next';
 
 type Props = {
   users: User[] | null;
 };
 
 const UserOverviewTable: React.FC<Props> = ({ users }: Props) => {
+  const { t } = useTranslation();
+
   return (
     <>
       {users && (
         <table className="table table-hover">
           <thead>
             <tr>
-              <th scope="col">First Name</th>
-              <th scope="col">Last Name</th>
-              <th scope="col">Email</th>
-              <th scope="col">Role</th>
+              <th scope="col">{t('common.firstName')}</th>
+              <th scope="col">{t('common.lastName')}</th>
+              <th scope="col">{t('common.email')}</th>
+              <th scope="col">{t('userOverviewTable.role')}</th>
             </tr>
           </thead>
           <tbody>
