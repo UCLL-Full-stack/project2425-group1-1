@@ -40,6 +40,11 @@ const Header: React.FC = () => {
               </Link>
             </li>
             <li className="navbar-item">
+              <Link href="/users" className="nav-link px-4 fs-5 text-white">
+                Users
+              </Link>
+            </li>
+            <li className="navbar-item">
               <a
                 href="/login"
                 onClick={handleLogout}
