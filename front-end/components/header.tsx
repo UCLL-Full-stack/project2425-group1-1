@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { AuthResponse } from '@types';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'next-i18next';
+import Language from './language/Language';
 
 const Header: React.FC = () => {
   const { t } = useTranslation('common');
@@ -69,6 +70,7 @@ const Header: React.FC = () => {
               </Link>
             </li>
           </>)}
+          <Language/>
         </ul>
       </nav>
     </header>
