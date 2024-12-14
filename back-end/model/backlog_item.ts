@@ -1,12 +1,12 @@
 import { BacklogItem as BacklogItemPrisma } from '@prisma/client';
 
 export class BacklogItem {
-    private id?: number;
-    private title: string;
-    private description: string;
-    private priority: number;
-    private estimatedHours: number;
-    private actualHours: number;
+    readonly id?: number;
+    readonly title: string;
+    readonly description: string;
+    readonly priority: number;
+    readonly estimatedHours: number;
+    readonly actualHours: number;
 
     constructor(backlogItem: {
         id?: number;

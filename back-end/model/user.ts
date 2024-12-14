@@ -2,12 +2,12 @@ import { User as UserPrisma } from '@prisma/client';
 import { Role } from '../types';
 
 export class User {
-    private id?: number;
-    private firstName: string;
-    private lastName: string;
-    private email: string;
-    private password: string;
-    private role: Role;
+    readonly id?: number;
+    readonly firstName: string;
+    readonly lastName: string;
+    readonly email: string;
+    readonly password: string;
+    readonly role: Role;
 
     constructor(user: { id?: number; firstName: string; lastName: string; email: string; password: string; role: Role }) {
         this.validate(user);

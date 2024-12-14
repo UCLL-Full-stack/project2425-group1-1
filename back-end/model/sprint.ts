@@ -7,12 +7,12 @@ import {
 } from '@prisma/client';
 
 export class Sprint {
-    private id?: number;
-    private name: string;
-    private startDate: Date;
-    private endDate: Date;
-    private backlogItems: BacklogItem[];
-    private product: Product;
+    readonly id?: number;
+    readonly name: string;
+    readonly startDate: Date;
+    readonly endDate: Date;
+    readonly backlogItems: BacklogItem[];
+    readonly product: Product;
 
     constructor(sprint: {
         id?: number;

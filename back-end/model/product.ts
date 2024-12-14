@@ -1,10 +1,10 @@
 import { Product as ProductPrisma } from '@prisma/client';
 
 export class Product {
-    private id?: number;
-    private name: string;
-    private description: string;
-    private releaseDate: Date;
+    readonly id?: number;
+    readonly name: string;
+    readonly description: string;
+    readonly releaseDate: Date;
 
     constructor(product: { id?: number; name: string; description: string; releaseDate: Date }) {
         this.validate(product);

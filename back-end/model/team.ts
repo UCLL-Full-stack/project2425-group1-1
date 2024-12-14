@@ -9,12 +9,12 @@ import {
 } from '@prisma/client';
 
 export class Team {
-    private id?: number;
-    private name: string;
-    private description: string;
-    private owner: User;
-    private members: User[];
-    private sprints: Sprint[];
+    readonly id?: number;
+    readonly name: string;
+    readonly description: string;
+    readonly owner: User;
+    readonly members: User[];
+    readonly sprints: Sprint[];
 
     constructor(team: { id?: number; name: string; description: string; owner: User; members?: User[]; sprints?: Sprint[] }) {
         this.validate(team);
