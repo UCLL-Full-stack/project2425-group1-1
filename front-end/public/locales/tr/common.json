@@ -44,8 +44,8 @@
             "title": "Başlık",
             "description": "Açıklama",
             "priority": "Öncelik",
-            "estimatedHours": "Tahmini saatler",
-            "actualHours": "Gerçek saatler"
+            "estimatedHours": "Tahmini süre",
+            "actualHours": "Asıl süre"
         }
     },
     "createBacklogItemForm": {
