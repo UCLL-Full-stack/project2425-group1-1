@@ -19,9 +19,9 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="px-3 mb-3 border-bottom bg-dark">
-      <nav className="navbar justify-content-center">
-        <a className="navbar-brand" href="/">
+    <nav className="navbar navbar-dark navbar-expand-lg bg-dark">
+      <div className="container-fluid">
+        <Link className="navbar-brand" href="/">
           <Image
             src="/images/logo.png"
             className="rounded"
@@ -29,54 +29,65 @@ const Header: React.FC = () => {
             width={260}
             height={60}
           />
-        </a>
-        <ul className="navbar-nav">
-          <li className="navbar-item">
-            <Link href="/" className="nav-link px-4 fs-5 text-white">
-              {t('header.home')}
-            </Link>
-          </li>
-          {authData && (<>
+        </Link>
+        <button className="navbar-toggler" type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarList"
+          aria-controls="navbarList"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarList">
+          <ul className="navbar-nav">
             <li className="navbar-item">
-              <Link href="/sprints" className="nav-link px-4 fs-5 text-white">
-                {t('header.sprints')}
+              <Link href="/" className="nav-link px-4 fs-5 text-white">
+                {t('header.home')}
               </Link>
             </li>
-            <li className="navbar-item">
-              <Link href="/users" className="nav-link px-4 fs-5 text-white">
-                {t('header.users')}
-              </Link>
+            {authData && (<>
+              <li className="navbar-item">
+                <Link href="/sprints" className="nav-link px-4 fs-5 text-white">
+                  {t('header.sprints')}
+                </Link>
+              </li>
+              <li className="navbar-item">
+                <Link href="/users" className="nav-link px-4 fs-5 text-white">
+                  {t('header.users')}
+                </Link>
+              </li>
+              <li className="navbar-item">
+                <Link
+                  href="/login"
+                  onClick={handleLogout}
+                  className="nav-link px-4 fs-5 text-white"
+                >
+                  {t('header.logout')}
+                </Link>
+              </li>
+            </>)}
+            {!authData && (<>
+              <li className="navbar-item">
+                <Link
+                  href="/login"
+                  className="nav-link px-4 fs-5 text-white">
+                  {t('header.login')}
+                </Link>
+              </li>
+              <li className="navbar-item">
+                <Link
+                  href="/signup"
+                  className="nav-link px-4 fs-5 text-white">
+                  {t('header.signup')}
+                </Link>
+              </li>
+            </>)}
+            <li className="navbar-item my-auto">
+              <Language />
             </li>
-            <li className="navbar-item">
-              <Link
-                href="/login"
-                onClick={handleLogout}
-                className="nav-link px-4 fs-5 text-white"
-              >
-                {t('header.logout')}
-              </Link>
-            </li>
-          </>)}
-          {!authData && (<>
-            <li className="navbar-item">
-              <Link
-                href="/login"
-                className="nav-link px-4 fs-5 text-white">
-                {t('header.login')}
-              </Link>
-            </li>
-            <li className="navbar-item">
-              <Link
-                href="/signup"
-                className="nav-link px-4 fs-5 text-white">
-                {t('header.signup')}
-              </Link>
-            </li>
-          </>)}
-          <Language />
-        </ul>
-      </nav>
-    </header>
+          </ul>
+        </div>
+      </div>
+    </nav>
   );
 };
 

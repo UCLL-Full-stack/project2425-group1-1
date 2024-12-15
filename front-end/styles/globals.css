@@ -27,11 +27,3 @@ main {
     align-items: center;
     padding: 1rem;
 }
-
-.navbar-nav {
-    flex-direction: row !important;
-}
-
-.navbar-nav .form-select {
-    width: auto;
-}
