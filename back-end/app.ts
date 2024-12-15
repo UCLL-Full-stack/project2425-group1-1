@@ -8,14 +8,16 @@ import { sprintRouter } from './controller/sprint.routes';
 import { backlogItemRouter } from './controller/backlog_item.routes';
 import { userRouter } from './controller/user.routes';
 import { expressjwt } from 'express-jwt';
+import helmet from 'helmet';
+
+dotenv.config();
 
 const app = express();
-dotenv.config();
-const port = process.env.APP_PORT || 3000;
 
+// BEGIN Request Middlewares
+app.use(helmet());
 app.use(cors());
 app.use(bodyParser.json());
-
 app.use(
     expressjwt({
         secret: process.env.JWT_SECRET || 'default_secret',
@@ -27,16 +29,16 @@ app.use(
             '/status']
     })
 );
+// END Request Middlewares
 
+// BEGIN Routes
 app.use('/sprints', sprintRouter);
 app.use('/backlog_items', backlogItemRouter);
 app.use('/users', userRouter);
-
 app.get('/status', (req, res) => {
     res.json({ message: 'Back-end is running...' });
 });
-
-const swaggerOpts = {
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerJSDoc({
     definition: {
         openapi: '3.0.0',
         info: {
@@ -45,14 +47,16 @@ const swaggerOpts = {
         },
     },
     apis: ['./controller/*.routes.ts'],
-};
-const swaggerSpec = swaggerJSDoc(swaggerOpts);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+})));
+// END Routes
 
+// BEGIN Response Middlewares
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     res.status(400).json({ error: err.name, message: err.message });
 });
+// END Response Middlewares
 
-app.listen(port || 3000, () => {
+const port = process.env.APP_PORT || 3000;
+app.listen(port, () => {
     console.log(`Back-end is running on port ${port}.`);
 });
