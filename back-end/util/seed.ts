@@ -1,5 +1,3 @@
-// Execute: npx ts-node util/seed.ts
-
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt';
 
@@ -63,8 +61,8 @@ const main = async () => {
     const sprint = await prisma.sprint.create({
         data: {
             name: 'Sprint 1',
-            startDate: new Date(),
-            endDate: new Date(new Date().setDate(new Date().getDate() + 14)),
+            startDate: new Date('2023-09-01'),
+            endDate: new Date('2023-09-15'),
             productId: product.id,
             teamId: team.id,
         },
@@ -78,6 +76,60 @@ const main = async () => {
             estimatedHours: 8,
             actualHours: 0,
             sprints: { connect: { id: sprint.id } },
+        },
+    });
+
+    const sprint2 = await prisma.sprint.create({
+        data: {
+            name: 'Sprint 2',
+            startDate: new Date('2023-10-01'),
+            endDate: new Date('2023-10-15'),
+            productId: product.id,
+            teamId: team.id,
+        },
+    });
+
+    const backlogItem2 = await prisma.backlogItem.create({
+        data: {
+            title: 'Develop feature X',
+            description: 'Implement the feature X as per the requirements.',
+            priority: 2,
+            estimatedHours: 16,
+            actualHours: 0,
+            sprints: { connect: { id: sprint2.id } },
+        },
+    });
+
+    const backlogItem3 = await prisma.backlogItem.create({
+        data: {
+            title: 'Test feature Y',
+            description: 'Perform testing on feature Y to ensure it meets the criteria.',
+            priority: 3,
+            estimatedHours: 10,
+            actualHours: 0,
+            sprints: { connect: { id: sprint2.id } },
+        },
+    });
+
+    const user3 = await prisma.user.create({
+        data: {
+            password: await bcrypt.hash('charlie', 12),
+            firstName: 'Charlie',
+            lastName: 'Brown',
+            email: 'charlie@ucll.be',
+            role: 'user',
+            teamMemberships: { connect: { id: team.id } },
+        },
+    });
+
+    const user4 = await prisma.user.create({
+        data: {
+            password: await bcrypt.hash('dave', 12),
+            firstName: 'Dave',
+            lastName: 'Wilson',
+            email: 'dave@ucll.be',
+            role: 'user',
+            teamMemberships: { connect: { id: team.id } },
         },
     });
 

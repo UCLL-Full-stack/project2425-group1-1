@@ -22,8 +22,12 @@ const Home: React.FC = () => {
           {t('home.appDescription')}
         </p>
         <h2>{t('login.credentials')}</h2>
-        <ul>
-          <li>administration@ucll.be : admin</li>
+        <ul className="list-group">
+          <li className="list-group-item">administration@ucll.be : admin</li>
+          <li className="list-group-item">alice@ucll.be : alice</li>
+          <li className="list-group-item">bob@ucll.be : bob</li>
+          <li className="list-group-item">charlie@ucll.be : charlie</li>
+          <li className="list-group-item">dave@ucll.be : dave</li>
         </ul>
       </main>
     </>
