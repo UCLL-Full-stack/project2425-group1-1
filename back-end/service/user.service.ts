@@ -4,23 +4,18 @@ import userDB from '../repository/user.db';
 import { UserDTO, AuthResponse, AuthRequest, AuthPayload } from '../types';
 import { generateJWTtoken, throwError } from '../util'
 
-const getAllUsers = async ({ user_id, role }: AuthPayload): Promise<User[]> => {
+const getAllUsers = async ({ user_id, role }: AuthPayload): Promise<UserDTO[]> => {
+    let users: User[];
     if (role == "admin")
-        return userDB.getAll();
-    return [await userDB.getById({ id: user_id }) ?? throwError("user is null")];
+        users = await userDB.getAll();
+    else
+        users = [await userDB.getById({ id: user_id }) ?? throwError("user is null")];
+    return users.map(({ password, ...user }) => user);
 }
-
-const getUserByEmail = async ({ email }: { email: string }): Promise<User> => {
-    const user = await userDB.getByEmail({ email });
-    if (!user) {
-        throw new Error(`User with email: ${email} does not exist.`);
-    }
-    return user;
-};
 
 const createUser = async ({
     firstName, lastName, email, password
-}: UserDTO): Promise<User> => {
+}: UserDTO): Promise<UserDTO> => {
     if (firstName == undefined) throw new Error("firstName is required");
     if (lastName == undefined) throw new Error("lastName is required");
     if (email == undefined) throw new Error("email is required");
@@ -30,13 +25,14 @@ const createUser = async ({
         throw new Error(`User with email: ${email} already exists.`);
 
     password = await bcrypt.hash(password, 12);
-    return userDB.create(new User({
+    const { password: hashedPassword, ...user } = await userDB.create(new User({
         firstName,
         lastName,
         email,
         password,
         role: "user"
     }));
+    return user;
 };
 
 const authenticate = async ({
@@ -62,4 +58,4 @@ const authenticate = async ({
     };
 };
 
-export default { createUser, getUserByEmail, getAllUsers, authenticate };
+export default { createUser, getAllUsers, authenticate };

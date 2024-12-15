@@ -3,15 +3,15 @@ import { BacklogItem } from '../model/backlog_item';
 import { BacklogItemDTO } from '../types';
 import { throwError } from '../util';
 
-const getAllBacklogItems = (): Promise<BacklogItem[]> => backlogItemDB.getAll();
+const getAllBacklogItems = (): Promise<BacklogItemDTO[]> => backlogItemDB.getAll();
 
-const getBacklogItemById = async (id: number): Promise<BacklogItem> => {
+const getBacklogItemById = async (id: number): Promise<BacklogItemDTO> => {
     const backlog_item = await backlogItemDB.getById({ id });
     if (!backlog_item) throw new Error(`Backlog item with id ${id} does not exist.`);
     return backlog_item;
 };
 
-const createBacklogItem = async (val: BacklogItemDTO): Promise<BacklogItem> => {
+const createBacklogItem = async (val: BacklogItemDTO): Promise<BacklogItemDTO> => {
     return await backlogItemDB.create(new BacklogItem({
         title: val.title ?? throwError("title is required"),
         description: val.description ?? throwError("description is required"),

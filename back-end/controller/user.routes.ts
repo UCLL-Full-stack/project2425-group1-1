@@ -43,30 +43,14 @@
  *              description: User password.
  *            role:
  *               $ref: '#/components/schemas/Role'
- *      UserDTO:
- *          type: object
- *          properties:
- *            firstName:
- *              type: string
- *              description: First name.
- *            lastName:
- *              type: string
- *              description: Last name.
- *            email:
- *              type: string
- *              description: E-mail.
- *            password:
- *              type: string
- *              description: User password.
- *            role:
- *               $ref: '#/components/schemas/Role'
  *      Role:
  *          type: string
  *          enum: [admin, manager, user]
  */
 import express, { NextFunction, Request, Response } from 'express';
 import userService from '../service/user.service';
-import { AuthPayload, AuthRequest, UserDTO } from '../types';
+import { AuthPayload, AuthRequest } from '../types';
+import { User } from '../model/user';
 
 const userRouter = express.Router();
 
@@ -79,7 +63,7 @@ const userRouter = express.Router();
  *     summary: Get a list of all users
  *     responses:
  *       200:
- *         description: A list of users.
+ *         description: A list of users without passwords.
  *         content:
  *           application/json:
  *             schema:
@@ -111,7 +95,7 @@ userRouter.get(
  *        content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/UserDTO'
+ *              $ref: '#/components/schemas/User'
  *      responses:
  *         200:
  *            description: The created user.
@@ -122,7 +106,7 @@ userRouter.get(
  */
 userRouter.post('/signup', async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const user_input = <UserDTO>req.body;
+        const user_input = <User>req.body;
         res.status(200).json(await userService.createUser(user_input));
     } catch (error) {
         next(error);
