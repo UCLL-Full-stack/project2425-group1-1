@@ -9,6 +9,7 @@ import { backlogItemRouter } from './controller/backlog_item.routes';
 import { userRouter } from './controller/user.routes';
 import { expressjwt } from 'express-jwt';
 import helmet from 'helmet';
+import { teamRouter } from './controller/team.routes';
 
 dotenv.config();
 
@@ -35,6 +36,7 @@ app.use(
 app.use('/sprints', sprintRouter);
 app.use('/backlog_items', backlogItemRouter);
 app.use('/users', userRouter);
+app.use('/teams', teamRouter);
 app.get('/status', (req, res) => {
     res.json({ message: 'Back-end is running...' });
 });
