@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Header from '@components/header';
 import { useEffect, useState } from 'react';
-import { Sprint } from '@types';
+import { ErrorResponse, Sprint } from '@types';
 import SprintService from '@services/SprintService';
 import SprintOverviewTable from '@components/sprints/SprintOverviewTable';
 import SprintDetails from '@components/sprints/SprintDetails';
@@ -14,9 +14,15 @@ const Sprints: React.FC = () => {
     const { t } = useTranslation();
     const [sprints, setSprints] = useState<Array<Sprint>>();
     const [selectedSprint, setSelectedSprint] = useState<Sprint | null>(null);
+    const [errorMessage, setErrorMessage] = useState<string>();
 
     const getSprints = async () => {
         const resp = await SprintService.getAllSprints();
+        if (!resp.ok) {
+            const error = await resp.json() as ErrorResponse;
+            setErrorMessage(error.message);
+            return;
+        }
         setSprints(await resp.json());
     };
 
@@ -42,7 +48,10 @@ const Sprints: React.FC = () => {
                     {
                         sprints && (<SprintOverviewTable sprints={sprints} selectSprint={setSelectedSprint} />)
                     }
-
+                    {errorMessage && (<div className="alert alert-danger" role="alert">
+                        {errorMessage}
+                    </div>
+                    )}
                     {selectedSprint && (
                         <>
                             <h2>{t('sprints.addNewBacklogItem', { sprintName: selectedSprint.name })}</h2>
